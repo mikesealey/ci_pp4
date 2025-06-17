@@ -5,3 +5,9 @@ body {
 h1 {
     color: red;
 }
+
+#nav-rows {
+    display: flex;
+    flex-direction: column !important;
+    border: 1px solid lime;
+}

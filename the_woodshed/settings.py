@@ -71,6 +71,8 @@ TEMPLATES = [
     },
 ]
 
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
 # Authenication Backends taken from https://docs.allauth.org/en/latest/installation/quickstart.html
 AUTHENTICATION_BACKENDS = [ 
 

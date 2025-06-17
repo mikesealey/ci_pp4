@@ -1,3 +1,4 @@
+{% load static %}
 {% include "./components/navigation.html" %}
 
 <!-- Intial HTML taken from Bootstarp docs https://getbootstrap.com/docs/4.6/getting-started/introduction/#starter-template  -->
@@ -10,7 +11,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
     <title>Hello, world!</title>
   </head>
