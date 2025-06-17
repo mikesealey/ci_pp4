@@ -1,10 +1,10 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div id="nav-rows" class="container-fluid">
+<nav class="navbar navbar-expand-lg navbar-light">
+  <div id="nav-rows" class="container-fluid f-flex flex-column">
     <div id="top-row" class="container-fluid d-flex">
-      <div class="flex-grow-4" style="border: 2px solid red">
+      <div class="flex-grow-4">
         <a id="top-row-logo" class="navbar-brand" href="#">The Woodshed</a>
       </div>
-      <div id="top-row-search" class="d-flex flex-grow-1" style="border: 2px solid lime">
+      <div id="top-row-search" class="d-flex flex-grow-1 px-5 ">
         <select class="flex-grow-4">
           <option value="">All Categories</option>
           <option value="bowl">Bowls</option>
@@ -15,7 +15,7 @@
         </select>
         <input type="search" name="" id="" class="flex-grow-1">
       </div>
-      <div id="top-row-user-links" class="flex-grow-4 d-flex flex-row align-items-center" style="border: 2px solid blue">
+      <div id="top-row-user-links" class="flex-grow-4 d-flex flex-row align-items-center">
         {% if user.is_authenticated %}
           <a class="navbar-brand" href="#">My Profile</a>
           <a class="navbar-brand" href="#">Log Out</a>
@@ -23,12 +23,13 @@
           <a class="navbar-brand" href="#">Register</a>
           <a class="navbar-brand" href="#">Log In</a>
         {% endif %}
-        <div class="d-flex align-items-center" style="border: 2px solid fuchsia">
+        <div class="d-flex align-items-center">
           <!-- { if basket.length } -->
           <!-- <span>{ basket length }</span> -->
           <!-- { endif } -->
-            <div id="basket-count">10</div>
-           <i class="fa-solid fa-basket-shopping"></i>
+            <!-- For layout rweasons it might just be cleaner to show a 0 and hide it -->
+            <div id="basket-count" class="d-flex justify-content-center align-items-center">12</div>
+           <i class="fa-solid fa-basket-shopping fa-3x" ></i>
         </div>
       </div>
     </div>
