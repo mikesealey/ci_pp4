@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light">
+<nav class="navbar navbar-expand-lg navbar-light translucent-bg">
   <div id="nav-rows" class="container-fluid f-flex flex-column">
     <div id="top-row" class="container-fluid d-flex">
       <div class="flex-grow-4">
@@ -20,8 +20,8 @@
           <a class="navbar-brand" href="#">My Profile</a>
           <a class="navbar-brand" href="#">Log Out</a>
         {% else %}
-          <a class="navbar-brand" href="#">Register</a>
-          <a class="navbar-brand" href="#">Log In</a>
+          <a class="navbar-brand" href="{% url 'account_signup' %}">Register</a>
+          <a class="navbar-brand" href="{% url 'account_login' %}">Log In</a>
         {% endif %}
         <div class="d-flex align-items-center">
           <!-- { if basket.length } -->

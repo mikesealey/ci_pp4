@@ -1,0 +1,16 @@
+{% extends "homepage.html" %}
+{% load static %}
+{% block content %}
+<div class="border border-dark m-5 p-5 translucent-bg">
+  <h2>Log in to The Wood Shed</h2>
+  <form method="post" action="{% url 'account_login' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Login</button>
+  </form>
+  <p>
+    <a href="{% url 'account_reset_password' %}">Forgot Password?</a>
+  </p>
+</div>
+
+{% endblock %}
