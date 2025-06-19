@@ -15,3 +15,8 @@ body {
 .translucent-bg {
     background-color: rgba(255, 255, 255, 0.5);
 }
+
+.product-card-img {
+    width: 90%;
+
+}

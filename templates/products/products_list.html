@@ -1,0 +1,11 @@
+{% block content %}
+<div class="p-5">
+  <div class="row">
+    {% for product in products %}
+      <div class="col-12 col-sm-6 col-lg-4 mb-4">
+        {% include "components/product_card.html" with product=product %}
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
