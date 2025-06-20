@@ -1,0 +1,18 @@
+{% extends "homepage.html" %}
+
+{% block content %}
+  <div class="border m-5 p-5 translucent-bg p-3">
+    <!-- Will build Image Gallery here -->
+      <img src="{{ product.images.0 }}" alt="{{ product.name }}" class="img-fluid">
+    <h1>{{ product.name }}</h1>
+    <div class="d-flex flex-row justify-content-between">
+        <p>£{{ product.price }}</p>
+        <p>Qty in stock: {{ product.qty_in_stock}}</p>
+    </div>
+    <p>Material: {{ product.material }}</p>
+    <p>Finish: {{ product.finish }}</p>
+    <p>{{ product.description }}</p>
+    
+
+  </div>
+{% endblock %}

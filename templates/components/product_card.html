@@ -7,7 +7,7 @@
   <h4>{{ product.name }}</h3>
   <p>Price: £{{ product.price }}</p>
   <div class="d-flex justify-content-between">
-    <b>Details</b>
+    <a href="{% url 'product_detail' product.pk %}"><b>See more details</b></a>
     <b>Add to basket</b>
   </div>
 </div>
