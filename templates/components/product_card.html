@@ -1,10 +1,10 @@
 <div class="product-card border translucent-bg p-3">
   {% if product.images %}
-  <div class="d-flex justify-content-center border">
+  <div id="product-card-img-container" class="d-flex justify-content-center border mb-2">
     <img src="{{ product.images.0.url }}" alt="{{ product.name }}" class="product-card-img"/>
-    </div>
+  </div>
   {% endif %}
-  <h4>{{ product.name }}</h3>
+  <h4 class="long-text-hidden">{{ product.name }}</h4>
   <p>Price: £{{ product.price }}</p>
   <div class="d-flex justify-content-between">
     <a href="{% url 'product_detail' product.pk %}"><b>See more details</b></a>
