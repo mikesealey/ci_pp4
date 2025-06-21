@@ -1,9 +1,14 @@
 {% extends "homepage.html" %}
 
 {% block content %}
-  <div class="border m-5 p-5 translucent-bg p-3">
-    <!-- Will build Image Gallery here -->
-      <img src="{{ product.images.0 }}" alt="{{ product.name }}" class="img-fluid">
+  <div id="" class="border mx-5 translucent-bg mt-4 p-3">
+    <!-- Image Gallery - controlled by script at bottom of file -->
+    <div id="gallery" class="d-flex flex-row justify-content-center">
+        <img class="img-fluid" id="left-image">
+        <img class="img-fluid" id="centre-image">
+        <img class="img-fluid" id="right-image">
+    </div>
+      <!-- <img src="{{ product.images.0 }}" alt="{{ product.name }}" class="img-fluid"> -->
     <h1>{{ product.name }}</h1>
     <div class="d-flex flex-row justify-content-between">
         <p>£{{ product.price }}</p>
@@ -12,7 +17,43 @@
     <p>Material: {{ product.material }}</p>
     <p>Finish: {{ product.finish }}</p>
     <p>{{ product.description }}</p>
-    
-
   </div>
+
+
+<script id="image-data" type="application/json">
+  {{ product.images|safe }}
+</script>
+
+<script>
+    // Django returns 'Python JSON' which uses single-quotes which isn't compatable with JS-JSON
+    // Processing Python JSON into legit-JSON
+  const imageArray = document.getElementById("image-data").textContent
+  const processedImageArray = imageArray.replaceAll("'", '"')
+  const images = JSON.parse(processedImageArray)
+
+  let index = -1;
+
+  function updateGallery() {
+    const leftIndex = (index + images.length) % images.length
+    const centreIndex = (index + 1) % images.length
+    const rightIndex = (index + 2) % images.length
+
+    document.getElementById("left-image").src = images[leftIndex].url
+    document.getElementById("centre-image").src = images[centreIndex].url
+    document.getElementById("right-image").src = images[rightIndex].url
+  }
+
+  document.getElementById("left-image").addEventListener("click", () => {
+    index = (index - 1 + images.length) % images.length;
+    updateGallery()
+  });
+
+  document.getElementById("right-image").addEventListener("click", () => {
+    index = (index + 1) % images.length
+    updateGallery()
+  });
+
+  updateGallery()
+</script>
+
 {% endblock %}

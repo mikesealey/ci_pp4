@@ -1,7 +1,7 @@
 <div class="product-card border translucent-bg p-3">
   {% if product.images %}
   <div class="d-flex justify-content-center border">
-    <img src="{{ product.images.0 }}" alt="{{ product.name }}" class="product-card-img"/>
+    <img src="{{ product.images.0.url }}" alt="{{ product.name }}" class="product-card-img"/>
     </div>
   {% endif %}
   <h4>{{ product.name }}</h3>

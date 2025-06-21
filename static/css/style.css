@@ -1,6 +1,7 @@
 body {
     background-color: rgb(75, 45, 0);
     background-image: url("../images/pexels-ono-kosuki-5974283.jpg");
+    background-attachment: scroll;
 }
 
 #basket-count {
@@ -20,3 +21,36 @@ body {
     width: 90%;
 
 }
+
+/* Image Carousel in Product Card */
+/* Shared properties of both peripherary images */
+#left-image, #right-image {
+    max-width: 15% !important;
+    filter: grayscale(60%);
+    filter: brightness(70%);
+    transform: scale(0.85);
+    transition: all 0.3s ease;
+}
+
+#left-image{
+    transform: perspective(600px) rotateY(-20deg) scale(0.8);
+}
+
+#left-image:hover {
+    transform: perspective(600px) rotateY(-20deg) scale(0.75);
+    filter: brightness(90%);
+}
+
+#right-image{
+    transform: perspective(600px) rotateY(20deg) scale(0.8);
+}
+
+#right-image:hover {
+    filter: brightness(90%);
+    transform: perspective(600px) rotateY(20deg) scale(0.75);
+}
+
+#centre-image {
+    max-height: 55vh;
+}
+/* End of Image Carousel in Product Card */

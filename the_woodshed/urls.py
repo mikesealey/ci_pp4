@@ -21,6 +21,7 @@ from catalogue import views
 
 
 
+
 urlpatterns = [
     path('', homepage, name="homepage"),
     path('admin/', admin.site.urls),

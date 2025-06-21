@@ -5,3 +5,4 @@ Background Image: https://www.pexels.com/photo/focused-artisan-making-hole-on-pl
 
 Icon Image: https://iconduck.com/icons/157332/hammer
 
+Useful SO on washing out the peripherary images in the gallery: https://stackoverflow.com/questions/74641294/how-to-wash-out-colors-with-css-filters
