@@ -36,22 +36,22 @@
     <div class="collapse navbar-collapse container-fluid" id="bottom-row">
       <ul class="navbar-nav d-flex w-100 justify-content-around">
         <li class="nav-item d-flex justify-content-center align-items-center flex-grow-1">
-          <a class="nav-link" href="/products/">All Products</a>
+          <a class="nav-link" href="{% url 'products_list' %}">All Products</a>
         </li>
         <li class="nav-item d-flex justify-content-center align-items-center flex-grow-1">
-          <a class="nav-link" href="#">Bowls</a>
+          <a class="nav-link" href="{% url 'products_list' %}?category=bowl">Bowls</a>
         </li>
         <li class="nav-item d-flex justify-content-center align-items-center flex-grow-1">
-          <a class="nav-link" href="#">Chairs</a>
+          <a class="nav-link" href="{% url 'products_list' %}?category=chair">Chairs</a>
         </li>
         <li class="nav-item d-flex justify-content-center align-items-center flex-grow-1">
-          <a class="nav-link" href="#">Tables</a>
+          <a class="nav-link" href="{% url 'products_list' %}?category=table">Tables</a>
         </li>
         <li class="nav-item d-flex justify-content-center align-items-center flex-grow-1">
-          <a class="nav-link" href="#">Trinkets</a>
+          <a class="nav-link" href="{% url 'products_list' %}?category=trinket">Trinkets</a>
         </li>
         <li class="nav-item d-flex justify-content-center align-items-center flex-grow-1">
-          <a class="nav-link" href="#">Vases</a>
+          <a class="nav-link" href="{% url 'products_list' %}?category=vase">Vases</a>
         </li>
       </ul>
     </div>

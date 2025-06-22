@@ -5,5 +5,10 @@ def homepage(request):
     return render(request, "base.html")
 
 def products_list(request):
-    products = Product.objects.all()
+    category = request.GET.get("category")
+    if category:
+        products = Product.objects.filter(category__iexact=category)
+    else:
+        products = Product.objects.all()
     return render(request, "products/products_list.html", {"products": products})
+
