@@ -8,6 +8,11 @@
   <p>Price: £{{ product.price }}</p>
   <div class="d-flex justify-content-between">
     <a href="{% url 'product_detail' product.pk %}"><b>See more details</b></a>
+    {% if not in_wishlist %}
+      <b>Add to Wishlist</b>
+    {% endif %}
     <b>Add to basket</b>
   </div>
+
+
 </div>

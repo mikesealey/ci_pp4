@@ -1,21 +1,18 @@
 {% extends "base.html" %}
-
 {% block content %}
-<!-- <div class="p-5"> -->
-  <div class="row mt-4">
-    {% if products.exists %}
-      {% for product in products %}
+<div class="row mt-4">
+  {% if items %}
+      {% for item in items %}
         <div class="col-12 col-sm-6 col-lg-4 px-5 pb-4">
-          {% include "components/product_card.html" with product=product in_wishlist=False %}
+          {% include "components/product_card.html" with product=item.product in_wishlist=True %}
         </div>
       {% endfor %}
-    {% else %}
-      <div class="translucent-bg col px-5 mx-5 p-2">
+  {% else %}
+    <div class="translucent-bg col px-5 mx-5 p-2">
         <h2>No Products Found</h2>
         <p>It looks like there aren't any products matching your search criteria.</p>
         <p>We're constantly upating our shop with more of your favourite products. Please try again later, or head to <a href="{% url 'products_list' %}">All Products</a></p>
       </div>
-    {% endif %}
-  </div>
+  {% endif %}
 </div>
 {% endblock %}
