@@ -27,3 +27,13 @@ def my_wishlist(request):
     wishlist = getattr(request.user, "wishlist", None)
     items = wishlist.items.select_related("product") if wishlist else []
     return render(request, "wishlist/my_wishlist.html", {"items": items})
+
+@login_required
+def remove_from_wishlist(request, product_id):
+    item = get_object_or_404(
+        WishlistItem,
+        wishlist__user=request.user,
+        product__id=product_id
+    )
+    item.delete()
+    return redirect("my_wishlist")

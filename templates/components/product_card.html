@@ -9,9 +9,15 @@
   <div class="d-flex justify-content-between">
     <a href="{% url 'product_detail' product.pk %}"><b>See more details</b></a>
     {% if not in_wishlist %}
-      <b>Add to Wishlist</b>
+      <p><a href="{% url 'add_to_wishlist' product.id %}">Add to Wishlist</a><i class="fa-solid fa-heart"></i></p>
+    {% else %}
+      <p>
+        <b><a href="{% url 'remove_from_wishlist' product.id %}">Remove from wishlist</a><i class="fa-solid fa-heart-crack"></i></b>
+      </p>
     {% endif %}
-    <b>Add to basket</b>
+    <p><b>
+      Add to Basket<i class="fa-solid fa-basket-shopping"></i>
+    </b></p> <!-- Will fix this when building basket-->
   </div>
 
 
