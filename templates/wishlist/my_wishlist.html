@@ -10,8 +10,8 @@
   {% else %}
     <div class="translucent-bg col px-5 mx-5 p-2">
         <h2>No Products Found</h2>
-        <p>It looks like there aren't any products matching your search criteria.</p>
-        <p>We're constantly upating our shop with more of your favourite products. Please try again later, or head to <a href="{% url 'products_list' %}">All Products</a></p>
+        <p>It doesn't look like you've saved anything to your wishlist</p>
+        <p><a href="{% url 'products_list' %}"></a>Click here to see All Products</a></p>
       </div>
   {% endif %}
 </div>
