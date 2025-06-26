@@ -4,6 +4,13 @@
       <div class="flex-grow-4">
         <a id="top-row-logo" class="navbar-brand" href="/">The Woodshed</a>
       </div>
+      <div>
+        {% if user.is_authenticated %}
+          <span>{{ user.username }}</span>
+        {% else %}
+          <span>not auth</span>
+        {% endif %}
+      </div>
       <div id="top-row-search" class="d-flex flex-grow-1 px-5 ">
         <select class="flex-grow-4">
           <option value="">All Categories</option>
