@@ -21,3 +21,9 @@ def add_to_basket(request, product_id):
         item.save()
 
     return redirect("products_list") # Should figure out some toast notificaiton instead of leaving the page
+
+@login_required
+def my_basket(request):
+    basket = getattr(request.user, "basket", None)
+    items = basket.items.select_related("product") if basket else []
+    return render(request, "basket/my_basket.html", {"items": items})

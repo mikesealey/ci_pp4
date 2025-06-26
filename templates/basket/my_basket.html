@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>Wishlist</h2>
+<h2>basket</h2>
 <div class="row mt-4">
   {% if items %}
       {% for item in items %}
         <div class="col-12 col-sm-6 col-lg-4 px-5 pb-4">
-          {% include "components/product_card.html" with product=item.product in_wishlist=True %}
+          {% include "components/product_card.html" with product=item.product%}
         </div>
       {% endfor %}
   {% else %}
