@@ -16,7 +16,7 @@
           <p>Qty in stock: {{ product.qty_in_stock}}</p>
         </div>
           <div class="d-flex flex-row">
-            <p><a href="{% url 'add_to_basket' product.id %}">Add to Basket</a><i class="fa-solid fa-basket-shopping"></i></p> <!-- Will fix this when building basket-->
+            <p><a href="{% url 'add_to_basket' product.id %}">Add to Basket</a><i class="fa-solid fa-basket-shopping"></i></p>
             <p><a href="{% url 'add_to_wishlist' product.id %}">Add to Wishlist</a><i class="fa-solid fa-heart"></i></p>
           </div>
     </div>

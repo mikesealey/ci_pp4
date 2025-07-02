@@ -77,3 +77,17 @@ a {
     max-height: 55vh;
 }
 /* End of Image Carousel in Product Card */
+
+/* Product Card */
+.qty-field {
+    max-width: 35px;
+    text-align: center;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* End of Product Card */

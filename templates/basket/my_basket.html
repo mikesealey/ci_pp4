@@ -5,7 +5,7 @@
   {% if items %}
       {% for item in items %}
         <div class="col-12 col-sm-6 col-lg-4 px-5 pb-4">
-          {% include "components/product_card.html" with product=item.product%}
+          {% include "components/product_card.html" with product=item.product item=item %}
         </div>
       {% endfor %}
   {% else %}

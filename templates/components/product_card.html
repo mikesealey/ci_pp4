@@ -1,5 +1,6 @@
 <div class="product-card border translucent-bg p-3">
   {% if product.images %}
+  {{ product }}
   <div id="product-card-img-container" class="d-flex justify-content-center border mb-2">
     <img src="{{ product.images.0.url }}" alt="{{ product.name }}" class="product-card-img"/>
   </div>
@@ -7,18 +8,48 @@
   <h4 class="long-text-hidden">{{ product.name }}</h4>
   <p>Price: £{{ product.price }}</p>
   <div class="d-flex justify-content-between">
-    <a href="{% url 'product_detail' product.pk %}"><b>See more details</b></a>
+    <!-- <a href="{% url 'product_detail' product.pk %}"><b>See more details</b></a>
     {% if not in_wishlist %}
       <p><a href="{% url 'add_to_wishlist' product.id %}">Add to Wishlist</a><i class="fa-solid fa-heart"></i></p>
     {% else %}
       <p>
         <b><a href="{% url 'remove_from_wishlist' product.id %}">Remove from wishlist</a><i class="fa-solid fa-heart-crack"></i></b>
       </p>
+    {% endif %} -->
+    <!-- <p><a href="{% url 'add_to_basket' product.id %}">Add to Basket</a><i class="fa-solid fa-basket-shopping"></i></p> -->
+
+    <!-- WISHLIST -->
+    {% if request.path == "/wishlist/my_wishlist/" %}
+      <b><a href="{% url 'remove_from_wishlist' product.id %}">Remove from wishlist</a><i class="fa-solid fa-heart-crack"></i></b>
+      <b><a href="{% url 'add_to_basket' product.id %}">Add to Basket</a><i class="fa-solid fa-basket-shopping"></i></b>
+    <!-- BASKET -->
+    {% elif request.path == "/basket/my_basket/" %}
+    <div>
+      <label>Quantity</label>
+      <i class="fa-solid fa-minus" onclick="decreaseQtyField('{{item.id}}')"></i>
+      <input type="number" min="1" value="{{ item.qty }}" class="qty-field" id="qty-field-{{item.id}}"><!-- find a way to set max-value to qty in stock-->
+      <i class="fa-solid fa-plus" onclick="increaseQtyField('{{item.id}}')"></i>
+      <b id="update-prompt-{{item.id}}"></b>
+    </div>
+      <!-- {{ item.qty }} -->
+    <!-- PRODUCTS LIST -->
+    {% else %}
+      <p><a href="{% url 'add_to_wishlist' product.id %}">Add to Wishlist</a><i class="fa-solid fa-heart"></i></p>
+      <p><a href="{% url 'add_to_basket' product.id %}">Add to Basket</a><i class="fa-solid fa-basket-shopping"></i></p>
     {% endif %}
-    <p><b>
-      Add to Basket<i class="fa-solid fa-basket-shopping"></i>
-    </b></p> <!-- Will fix this when building basket-->
   </div>
-
-
 </div>
+
+<script>
+  function increaseQtyField(field){
+    $("#qty-field-" + field).val(Number($("#qty-field-" + field).val()) +1)
+
+    $("#update-prompt-" + field).text("UPDATE")
+  }
+
+  function decreaseQtyField(field){
+    if (Number($("#qty-field-" + field).val()) > 1) {
+      $("#qty-field-" + field).val(Number($("#qty-field-" + field).val()) -1)
+    }
+  }
+</script>

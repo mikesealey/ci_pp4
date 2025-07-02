@@ -27,3 +27,13 @@ def my_basket(request):
     basket = getattr(request.user, "basket", None)
     items = basket.items.select_related("product") if basket else []
     return render(request, "basket/my_basket.html", {"items": items})
+
+@login_required
+def remove_from_basket(request, product_id):
+    item = get_object_or_404(
+        BasketItem,
+        basket__user=request.user,
+        product__id=product_id
+    )
+    item.delete()
+    return redirect("my_basket")

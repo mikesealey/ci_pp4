@@ -31,14 +31,17 @@
           <a class="navbar-brand" href="{% url 'account_signup' %}">Register</a>
           <a class="navbar-brand" href="{% url 'account_login' %}">Log In</a>
         {% endif %}
+        <a href="{% url 'my_basket' %}">
         <div class="d-flex align-items-center">
+          
           <!-- { if basket.length } -->
           <!-- <span>{ basket length }</span> -->
           <!-- { endif } -->
             <!-- For layout rweasons it might just be cleaner to show a 0 and hide it -->
-            <div id="basket-count" class="d-flex justify-content-center align-items-center">12</div>
+            <div id="basket-count" class="d-flex justify-content-center align-items-center">{{ basket_item_count }}</div>
            <i class="fa-solid fa-basket-shopping fa-3x" ></i>
-        </div>
+          </div>
+        </a>
       </div>
     </div>
     <div class="collapse navbar-collapse container-fluid" id="bottom-row">
