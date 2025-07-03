@@ -4,7 +4,7 @@
     <img src="{{ product.images.0.url }}" alt="{{ product.name }}" class="product-card-img"/>
   </div>
   {% endif %}
-  <h4 class="long-text-hidden">{{ product.name }}</h4>
+  <h4 class="long-text-hidden"><a href="{% url 'product_detail' product.id %}">{{ product.name }}</a></h4>
   <p>Price: £{{ product.price }}</p>
   <div class="d-flex justify-content-between">
     <!-- WISHLIST -->
