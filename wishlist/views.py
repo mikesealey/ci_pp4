@@ -20,7 +20,7 @@ def add_to_wishlist(request, product_id):
         item.qty += 1
         item.save()
 
-    return redirect("products_list") # Should figure out some toast notificaiton instead of leaving the page
+    return redirect(request.META.get("HTTP_REFERER", "products_list"))
 
 @login_required
 def my_wishlist(request):

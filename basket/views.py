@@ -20,7 +20,7 @@ def add_to_basket(request, product_id):
         item.qty += 1
         item.save()
 
-    return redirect("products_list") # Should figure out some toast notificaiton instead of leaving the page
+    return redirect(request.META.get("HTTP_REFERER", "products_list"))
 
 @login_required
 def my_basket(request):
@@ -36,4 +36,4 @@ def remove_from_basket(request, product_id):
         product__id=product_id
     )
     item.delete()
-    return redirect("my_basket")
+    return redirect(request.META.get("HTTP_REFERER", "my_basket"))
