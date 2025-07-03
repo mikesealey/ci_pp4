@@ -70,6 +70,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'basket.models.basket_item_count',
+                'wishlist.models.wishlist_item_count'
             ],
         },
     },
