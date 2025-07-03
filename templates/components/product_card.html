@@ -1,6 +1,5 @@
 <div class="product-card border translucent-bg p-3">
   {% if product.images %}
-  {{ product }}
   <div id="product-card-img-container" class="d-flex justify-content-center border mb-2">
     <img src="{{ product.images.0.url }}" alt="{{ product.name }}" class="product-card-img"/>
   </div>
@@ -22,6 +21,7 @@
     {% if request.path == "/wishlist/my_wishlist/" %}
       <b><a href="{% url 'remove_from_wishlist' product.id %}">Remove from wishlist</a><i class="fa-solid fa-heart-crack"></i></b>
       <b><a href="{% url 'add_to_basket' product.id %}">Add to Basket</a><i class="fa-solid fa-basket-shopping"></i></b>
+    <!-- END OF WISHLIST -->
     <!-- BASKET -->
     {% elif request.path == "/basket/my_basket/" %}
     <div>
@@ -31,12 +31,16 @@
       <i class="fa-solid fa-plus" onclick="increaseQtyField('{{item.id}}')"></i>
       <b id="update-prompt-{{item.id}}"></b>
     </div>
-      <!-- {{ item.qty }} -->
+    <div>
+        <a href="{% url 'remove_from_basket' product.id %}"><i class="fa-solid fa-trash"></i></a>
+    </div>
+    <!-- END OF BASKET -->
     <!-- PRODUCTS LIST -->
     {% else %}
       <p><a href="{% url 'add_to_wishlist' product.id %}">Add to Wishlist</a><i class="fa-solid fa-heart"></i></p>
       <p><a href="{% url 'add_to_basket' product.id %}">Add to Basket</a><i class="fa-solid fa-basket-shopping"></i></p>
     {% endif %}
+    <!-- END OF OTHER PRODUCT_CARD USE -->
   </div>
 </div>
 
