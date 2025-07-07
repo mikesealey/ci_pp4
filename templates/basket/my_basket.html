@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>basket</h2>
+<div class="translucent-bg px-5 mx-2">
+  <h2>My Basket</h2>
+
+</div>
 <div class="row mt-4">
   {% if items %}
       {% for item in items %}
@@ -11,7 +14,7 @@
   {% else %}
     <div class="translucent-bg col px-5 mx-5 p-2">
         <h2>No Products Found</h2>
-        <p>It doesn't look like you've saved anything to your wishlist</p>
+        <p>It doesn't look like you've saved anything to your basket</p>
         <p><a href="{% url 'products_list' %}"></a>Click here to see All Products</a></p>
       </div>
   {% endif %}
