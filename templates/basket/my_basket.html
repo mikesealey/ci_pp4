@@ -25,7 +25,11 @@
         <div class="border border-light justify-content-end">
           <div class="pairs d-flex justify-content-between px-5">
             <p class="px-5">Shipping & Handling</p>
-            <p>£{{ shipping_handling }}</p>
+              {% if basket_total >= 500 %}
+                <b><span class="strikethrough">£{{shipping_handling}}</span> £0</b>
+              {% else %}
+                <b>£{{ shipping_handling}}</b>
+              {% endif %}
           </div>
           <div class="pairs d-flex justify-content-between px-5">
             <p class="px-5">Basket Total</p>
@@ -39,7 +43,11 @@
       </div>
       
       <div class="info">
-        <p>Free shipping on orders over £{{ free_shipping_at }}! Add another {{ difference_to_free_shipping }} to qualify for free shipping</p>
+        {% if basket_total >= 500 %}
+          <p>You cqualify for Free shipping on orders over £{{ free_shipping_at }}! Add another {{ difference_to_free_shipping }} to qualify for free shipping</p>
+        {% else %}
+          <p>Free shipping on orders over £{{ free_shipping_at }}! Add another {{ difference_to_free_shipping }} to qualify for free shipping</p>
+        {% endif %}
       </div>
       <div class="d-flex justify-content-between">
         <p><a href="{% url 'products_list' %}" class="btn btn-primary">Continue Shopping</a></p>

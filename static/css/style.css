@@ -91,3 +91,7 @@ input::-webkit-inner-spin-button {
 }
 
 /* End of Product Card */
+
+.strikethrough {
+    text-decoration: line-through;
+}
