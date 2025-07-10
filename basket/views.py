@@ -2,6 +2,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from catalogue.models import Product
 from django.contrib.auth.decorators import login_required
 from .models import Basket, BasketItem
+from django.conf import settings
+import stripe
 
 # Create your views here.
 @login_required
@@ -57,3 +59,38 @@ def remove_from_basket(request, product_id):
     )
     item.delete()
     return redirect(request.META.get("HTTP_REFERER", "my_basket"))
+
+@login_required
+def checkout(request):
+    basket = get_object_or_404(Basket.objects.prefetch_related("items__product"), user=request.user)
+    items = basket.items.all()
+
+    basket_total = sum(item.product.price * item.qty for item in items)
+    basket_total_pence = int(basket_total * 100)  # Stripe expects pence
+
+    if request.method == "POST":
+        session = stripe.checkout.Session.create(
+            payment_method_types=["card"],
+            line_items=[
+                {
+                    "price_data": {
+                        "currency": "gbp",
+                        "product_data": {
+                            "name": "The Wood Shed Order",
+                        },
+                        "unit_amount": basket_total_pence,
+                    },
+                    "quantity": 1,
+                }
+            ],
+            mode="payment",
+            customer_email=request.user.email,
+            success_url=f"{settings.DOMAIN_URL}/basket/checkout/success/",
+            cancel_url=f"{settings.DOMAIN_URL}/basket/checkout/cancel/",
+        )
+        return redirect(session.url, code=303)
+
+    return render(request, "basket/checkout.html", {
+        "items": items,
+        "basket_total": basket_total,
+    })
