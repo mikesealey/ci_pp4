@@ -26,7 +26,27 @@ def add_to_basket(request, product_id):
 def my_basket(request):
     basket = getattr(request.user, "basket", None)
     items = basket.items.select_related("product") if basket else []
-    return render(request, "basket/my_basket.html", {"items": items})
+
+    basket_total = sum(item.product.price * item.qty for item in items)
+    shipping_handling = 12 # Shipping and Handling cost
+    free_shipping_at = 500 # cost at which shipping becomes free
+    difference_to_free_shipping = free_shipping_at - basket_total
+    order_total = basket_total
+    if order_total < free_shipping_at:
+        order_total += shipping_handling
+
+    return render(
+        request,
+        "basket/my_basket.html",
+        {
+            "items": items,
+            "basket_total": basket_total,
+            "shipping_handling": shipping_handling,
+            "free_shipping_at": free_shipping_at,
+            "difference_to_free_shipping": difference_to_free_shipping,
+            "order_total": order_total 
+        }
+    )
 
 @login_required
 def remove_from_basket(request, product_id):
