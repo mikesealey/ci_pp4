@@ -5,6 +5,8 @@ from .models import Basket, BasketItem
 from django.conf import settings
 import stripe
 
+stripe.api_key = settings.STRIPE_SECRET_KEY
+
 # Create your views here.
 @login_required
 def add_to_basket(request, product_id):
@@ -62,11 +64,13 @@ def remove_from_basket(request, product_id):
 
 @login_required
 def checkout(request):
+    print("METHOD GOES HERE!", request.method)
+    print("Stripe key:", settings.STRIPE_SECRET_KEY)
     basket = get_object_or_404(Basket.objects.prefetch_related("items__product"), user=request.user)
     items = basket.items.all()
 
     basket_total = sum(item.product.price * item.qty for item in items)
-    basket_total_pence = int(basket_total * 100)  # Stripe expects pence
+    basket_total_pence = int(basket_total * 100)  # Stripe expects prices in pence
 
     if request.method == "POST":
         session = stripe.checkout.Session.create(

@@ -1,8 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="translucent-bg px-5 mx-2">
+<div class="translucent-bg p-5 m-2">
   <h2>Checkout</h2>
-  <form>
+  <form method="post">
+    {% csrf_token %}
    <div class="col border border-dark p-3">
   <h3>Billing Address</h3>
 
@@ -63,7 +64,6 @@
 
 <div class="col border border-dark p-3 mt-4">
   <h3>Payment Details</h3>
-
   <div class="form-group row">
     <label for="card-number" class="col-sm-4 col-form-label">Card Number</label>
     <div class="col-sm-8">
@@ -88,8 +88,10 @@
       <input id="card-cvc" type="text" class="form-control">
     </div>
   </div>
-    </div>
-  </form>
+  <h2>£{{basket_total}}</h2>
+    <button type="submit" class="btn btn-primary">Complete Purchase</button>
+</div>
+</form>
 </div>
 
 
