@@ -4,6 +4,9 @@ from django.contrib.auth.decorators import login_required
 from .models import Basket, BasketItem
 from django.conf import settings
 import stripe
+from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse, HttpResponseBadRequest
+import json
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
@@ -98,3 +101,22 @@ def checkout(request):
         "items": items,
         "basket_total": basket_total,
     })
+
+@csrf_exempt
+def create_payment_intent(request):
+    if request.method != "POST":
+        return HttpResponseBadRequest("Invalid method")
+
+    try:
+        data = json.loads(request.body)
+        # Get amount from session, basket, or hardcode test value
+        amount = 5000  # £50.00 in pence
+
+        intent = stripe.PaymentIntent.create(
+            amount=amount,
+            currency="gbp",
+            metadata={"integration_check": "accept_a_payment"},
+        )
+        return JsonResponse({"client_secret": intent.client_secret})
+    except Exception as e:
+        return JsonResponse({"error": str(e)}, status=400)
