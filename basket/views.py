@@ -67,55 +67,31 @@ def remove_from_basket(request, product_id):
 
 @login_required
 def checkout(request):
-    print("METHOD GOES HERE!", request.method)
-    print("Stripe key:", settings.STRIPE_SECRET_KEY)
     basket = get_object_or_404(Basket.objects.prefetch_related("items__product"), user=request.user)
     items = basket.items.all()
-
     basket_total = sum(item.product.price * item.qty for item in items)
-    basket_total_pence = int(basket_total * 100)  # Stripe expects prices in pence
-
-    if request.method == "POST":
-        session = stripe.checkout.Session.create(
-            payment_method_types=["card"],
-            line_items=[
-                {
-                    "price_data": {
-                        "currency": "gbp",
-                        "product_data": {
-                            "name": "The Wood Shed Order",
-                        },
-                        "unit_amount": basket_total_pence,
-                    },
-                    "quantity": 1,
-                }
-            ],
-            mode="payment",
-            customer_email=request.user.email,
-            success_url=f"{settings.DOMAIN_URL}/basket/checkout/success/",
-            cancel_url=f"{settings.DOMAIN_URL}/basket/checkout/cancel/",
-        )
-        return redirect(session.url, code=303)
 
     return render(request, "basket/checkout.html", {
         "items": items,
         "basket_total": basket_total,
+        "stripe_public_key": settings.STRIPE_PUBLIC_KEY
     })
 
 @csrf_exempt
+@login_required
 def create_payment_intent(request):
     if request.method != "POST":
         return HttpResponseBadRequest("Invalid method")
 
     try:
-        data = json.loads(request.body)
-        # Get amount from session, basket, or hardcode test value
-        amount = 5000  # £50.00 in pence
+        basket = get_object_or_404(Basket.objects.prefetch_related("items__product"), user=request.user)
+        basket_total = sum(item.product.price * item.qty for item in basket.items.all())
+        amount = int(basket_total * 100)  # in pence
 
         intent = stripe.PaymentIntent.create(
             amount=amount,
             currency="gbp",
-            metadata={"integration_check": "accept_a_payment"},
+            metadata={"user_id": request.user.id}
         )
         return JsonResponse({"client_secret": intent.client_secret})
     except Exception as e:

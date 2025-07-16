@@ -1,4 +1,4 @@
-const stripe = Stripe("{{ stripe_public_key }}");
+const stripe = Stripe(window.stripe_public_key);
 const elements = stripe.elements();
 const card = elements.create("card");
 card.mount("#card-element");
@@ -10,21 +10,21 @@ form.addEventListener("submit", async (e) => {
     e.preventDefault();
     submitButton.disabled = true;
 
-    const res = await fetch("{% url 'create_payment_intent' %}", {
+    const res = await fetch(window.payment_intent_url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "X-CSRFToken": "{{ csrf_token }}"
+        "X-CSRFToken": window.csrf_token
       },
       body: JSON.stringify({
         name: document.getElementById("name-on-card").value
-        })
+      })
     });
 
-const { client_secret } = await res.json();
+    const { client_secret } = await res.json();
 
     const result = await stripe.confirmCardPayment(client_secret, {
-    payment_method: {
+      payment_method: {
         card,
         billing_details: {
           name: document.getElementById("name-on-card").value
