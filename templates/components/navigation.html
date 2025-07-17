@@ -11,16 +11,19 @@
           <span>not auth</span>
         {% endif %}
       </div>
-      <div id="top-row-search" class="d-flex flex-grow-1 px-5 ">
-        <select class="flex-grow-4">
-          <option value="">All Categories</option>
-          <option value="bowl">Bowls</option>
-          <option value="chair">Chairs</option>
-          <option value="table">Tables</option>
-          <option value="trinket">Trinkets</option>
-          <option value="vase">Vases</option>
-        </select>
-        <input type="search" name="" id="" class="flex-grow-1">
+      <div>
+        <form action="{% url 'product_search' %}" method="get" id="top-row-search" class="d-flex flex-grow-1 px-5">
+          <select name="category" class="flex-grow-4">
+            <option value="">All Categories</option>
+            <option value="bowl">Bowls</option>
+            <option value="chair">Chairs</option>
+            <option value="table">Tables</option>
+            <option value="trinket">Trinkets</option>
+            <option value="vase">Vases</option>
+          </select>
+          <input type="search" name="q" class="flex-grow-1">
+          <button type="submit">Search</button>
+        </form>
       </div>
       <div id="top-row-user-links" class="flex-grow-4 d-flex flex-row align-items-center">
         {% if user.is_authenticated %}

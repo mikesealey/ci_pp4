@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from .views import homepage, products_list
+from .views import homepage, products_list, product_search
 from . import views
 from catalogue import views
 
@@ -24,6 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
     path('products/', products_list, name="products_list"),
+    path('search', product_search, name="product_search"),
     path("product/<int:pk>/", views.product_detail, name="product_detail"),
     path("wishlist/", include("wishlist.urls")),
     path("basket/", include("basket.urls"))
