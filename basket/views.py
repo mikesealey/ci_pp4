@@ -96,3 +96,9 @@ def create_payment_intent(request):
         return JsonResponse({"client_secret": intent.client_secret})
     except Exception as e:
         return JsonResponse({"error": str(e)}, status=400)
+    
+def payment_success(request):
+    return render(request, "basket/success.html")
+
+def payment_error(request):
+    return render(request, "basket/error.html")

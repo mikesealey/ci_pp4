@@ -1,10 +1,14 @@
 const stripe = Stripe(window.stripe_public_key);
 const elements = stripe.elements();
-const card = elements.create("card");
+const card = elements.create("card", {
+  hidePostalCode: true
+});
 card.mount("#card-element");
 
 const form = document.getElementById("payment-form");
 const submitButton = document.getElementById("submit-button");
+
+
 
 form.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -27,7 +31,10 @@ form.addEventListener("submit", async (e) => {
       payment_method: {
         card,
         billing_details: {
-          name: document.getElementById("name-on-card").value
+          name: document.getElementById("name-on-card").value,
+          address: {
+            postal_code: document.getElementById("bill-postcode").value
+          }
         }
       }
     });
@@ -35,9 +42,7 @@ form.addEventListener("submit", async (e) => {
     if (result.error) {
       document.getElementById("card-errors").textContent = result.error.message;
       submitButton.disabled = false;
-    } else {
-      if (result.paymentIntent.status === 'succeeded') {
-        form.submit();
-      }
+    } else if (result.paymentIntent && result.paymentIntent.status === 'succeeded') {
+      window.location.href = "/basket/success/";
     }
 });
