@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'catalogue',
     'wishlist',
-    'basket'
+    'basket',
+    'orders'
 ]
 
 MIDDLEWARE = [

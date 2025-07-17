@@ -7,6 +7,7 @@ import stripe
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse, HttpResponseBadRequest
 import json
+from orders.utils import create_order_from_basket
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
@@ -97,9 +98,23 @@ def create_payment_intent(request):
     except Exception as e:
         return JsonResponse({"error": str(e)}, status=400)
     
+from orders.models import Address
+
 @login_required
 def payment_success(request):
     basket = Basket.objects.filter(user=request.user).first()
+    if request.method == "POST":
+        address = Address.objects.create(
+            user=request.user,
+            name=request.POST.get("ship-name"),
+            address1=request.POST.get("ship-address-1"),
+            address2=request.POST.get("ship-address-2"),
+            town_city=request.POST.get("ship-town-city"),
+            postcode=request.POST.get("ship-postcode"),
+            phone=request.POST.get("ship-phone"),
+            email=request.POST.get("email"),
+        )
+        create_order_from_basket(request.user, address)
 
     if basket:
         items = BasketItem.objects.filter(basket=basket)
@@ -114,3 +129,5 @@ def payment_success(request):
 
 def payment_error(request):
     return render(request, "basket/error.html")
+
+

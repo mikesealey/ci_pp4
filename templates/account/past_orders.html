@@ -1,0 +1,18 @@
+{% block content %}
+
+  <div class="container mt-4">
+    <h2>My Past Orders</h2>
+    {% if orders %}
+      <ul class="list-group">
+        {% for order in orders %}
+          <li class="list-group-item">
+            Order #{{ order.id }}
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>You haven't placed any orders yet.</p>
+    {% endif %}
+  </div>
+
+{% endblock %}

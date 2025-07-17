@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from .views import homepage, products_list, product_search
+from .views import homepage, products_list, product_search, my_profile, my_past_orders
 from . import views
 from catalogue import views
 
@@ -27,5 +27,8 @@ urlpatterns = [
     path('search', product_search, name="product_search"),
     path("product/<int:pk>/", views.product_detail, name="product_detail"),
     path("wishlist/", include("wishlist.urls")),
-    path("basket/", include("basket.urls"))
+    path("basket/", include("basket.urls")),
+    path("profile/", my_profile, name="my_profile"),
+    path("profile/orders/", my_past_orders, name="past_orders"),
+    path("orders/", include("orders.urls")),
 ]
