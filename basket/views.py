@@ -100,8 +100,16 @@ def create_payment_intent(request):
 @login_required
 def payment_success(request):
     basket = Basket.objects.filter(user=request.user).first()
+
     if basket:
-        BasketItem.objects.filter(basket=basket).delete()
+        items = BasketItem.objects.filter(basket=basket)
+        for item in items:
+            product = item.product
+            product.qty_in_stock -= item.qty
+            product.save()
+
+        items.delete()
+
     return render(request, "basket/success.html")
 
 def payment_error(request):
