@@ -97,7 +97,11 @@ def create_payment_intent(request):
     except Exception as e:
         return JsonResponse({"error": str(e)}, status=400)
     
+@login_required
 def payment_success(request):
+    basket = Basket.objects.filter(user=request.user).first()
+    if basket:
+        BasketItem.objects.filter(basket=basket).delete()
     return render(request, "basket/success.html")
 
 def payment_error(request):
