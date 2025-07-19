@@ -23,7 +23,7 @@
     <link rel="icon" type="image/x-icon" href="{% static 'images/hammer_icon.ico' %}">
 
     <!-- Toast Scrupt -->
-     <script src="../static/scripts/toast.js"></script>
+     <script src="{% static 'scripts/toast.js' %}"></script>
   </head>
   <body>
   {% include "./components/navigation.html" %}
@@ -48,7 +48,7 @@
     -->
 
     <!-- Toast Notifications -->
-    <div aria-live="polite" aria-atomic="true" style="position: fixed; bottom: 1rem; left: 50%; transform: translateX(-50%); z-index: 1080;">
+    <div id="toast-notification" aria-live="polite" aria-atomic="true">
     {% for message in messages %}
       <div class="toast" role="alert" data-delay="3000" data-autohide="true">
         <div class="toast-header">

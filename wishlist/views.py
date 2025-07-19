@@ -21,7 +21,7 @@ def add_to_wishlist(request, product_id):
         item.qty += 1
         item.save()
 
-    message = "Added item to wishlist" # Want to add product name here later
+    message = f"Added {product.name} to wishlist"
     messages.success(request, message)
     return redirect(request.META.get("HTTP_REFERER", "products_list"))
 
@@ -38,5 +38,9 @@ def remove_from_wishlist(request, product_id):
         wishlist__user=request.user,
         product__id=product_id
     )
+    message = f"Removed {item.product.name} from wishlist"
     item.delete()
+
+    messages.success(request, message)
+    print(message)
     return redirect("my_wishlist")

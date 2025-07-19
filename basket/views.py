@@ -9,6 +9,7 @@ from django.http import JsonResponse, HttpResponseBadRequest
 import json
 from orders.utils import create_order_from_basket
 from orders.models import Address
+from django.contrib import messages
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
@@ -29,6 +30,8 @@ def add_to_basket(request, product_id):
         item.qty += 1
         item.save()
 
+    message = f"Added {product.name} to basket"
+    messages.success(request, message)
     return redirect(request.META.get("HTTP_REFERER", "products_list"))
 
 @login_required
@@ -64,7 +67,10 @@ def remove_from_basket(request, product_id):
         basket__user=request.user,
         product__id=product_id
     )
+    message = f"Removed {item.product.name} from basket"
     item.delete()
+    print(message)
+    messages.success(request, message)
     return redirect(request.META.get("HTTP_REFERER", "my_basket"))
 
 @login_required
@@ -139,9 +145,14 @@ def payment_success(request):
             product.save()
         items.delete()
 
+    message = "Succcess! Your order has been placed"
+    messages.success(request, message)
     return render(request, "basket/success.html")
 
 def payment_error(request):
+    
+    message = "An error has occcured. Your card as not been charged"
+    messages.error(request, message)
     return render(request, "basket/error.html")
 
 
