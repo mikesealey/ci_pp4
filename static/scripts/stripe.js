@@ -5,44 +5,53 @@ const card = elements.create("card", {
 });
 card.mount("#card-element");
 
-const form = document.getElementById("payment-form");
-const submitButton = document.getElementById("submit-button");
+const $form = $("#payment-form");
+const $submitButton = $("#submit-button");
 
 
 
-form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    submitButton.disabled = true;
+$form.on("submit", async function (e) {
+  e.preventDefault();
+  $submitButton.prop("disabled", true);
 
-    const res = await fetch(window.payment_intent_url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "X-CSRFToken": window.csrf_token
-      },
-      body: JSON.stringify({
-        name: document.getElementById("name-on-card").value
-      })
-    });
+  const res = await fetch(window.payment_intent_url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "X-CSRFToken": window.csrf_token
+    },
+    body: JSON.stringify({
+      name: $("#name-on-card").val(),
+      shipping: {
+        name: $("#ship-name").val(),
+        address1: $("#ship-address-line-1").val(),
+        address2: $("#ship-address-line-2").val(),
+        town_city: $("#ship-town-city").val(),
+        postcode: $("#ship-postcode").val(),
+        phone: $("#ship-phone").val() || "",
+        email: $("#email").val() || ""
+      }
+    })
+  });
 
-    const { client_secret } = await res.json();
+  const { client_secret } = await res.json();
 
-    const result = await stripe.confirmCardPayment(client_secret, {
-      payment_method: {
-        card,
-        billing_details: {
-          name: document.getElementById("name-on-card").value,
-          address: {
-            postal_code: document.getElementById("bill-postcode").value
-          }
+  const result = await stripe.confirmCardPayment(client_secret, {
+    payment_method: {
+      card: card,
+      billing_details: {
+        name: $("#name-on-card").val(),
+        address: {
+          postal_code: $("#bill-postcode").val()
         }
       }
-    });
-
-    if (result.error) {
-      document.getElementById("card-errors").textContent = result.error.message;
-      submitButton.disabled = false;
-    } else if (result.paymentIntent && result.paymentIntent.status === 'succeeded') {
-      window.location.href = "/basket/success/";
     }
+  });
+
+  if (result.error) {
+    $("#card-errors").text(result.error.message);
+    $submitButton.prop("disabled", false);
+  } else if (result.paymentIntent && result.paymentIntent.status === "succeeded") {
+    window.location.href = "/basket/success/";
+  }
 });
