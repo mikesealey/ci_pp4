@@ -52,6 +52,7 @@ $form.on("submit", async function (e) {
     $("#card-errors").text(result.error.message);
     $submitButton.prop("disabled", false);
   } else if (result.paymentIntent && result.paymentIntent.status === "succeeded") {
+    console.log("SUCCESS!")
     window.location.href = "/basket/success/";
   }
 });
