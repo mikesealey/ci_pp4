@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from catalogue.models import Product
 from django.contrib.auth.decorators import login_required
 from .models import Wishlist, WishlistItem
+from django.contrib import messages
 
 # Create your views here.
 @login_required
@@ -20,6 +21,8 @@ def add_to_wishlist(request, product_id):
         item.qty += 1
         item.save()
 
+    message = "Added item to wishlist" # Want to add product name here later
+    messages.success(request, message)
     return redirect(request.META.get("HTTP_REFERER", "products_list"))
 
 @login_required

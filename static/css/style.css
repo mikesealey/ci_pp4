@@ -95,3 +95,12 @@ input::-webkit-inner-spin-button {
 .strikethrough {
     text-decoration: line-through;
 }
+
+/* Toast Notifications */
+#toast-notification {
+     position: fixed;
+     bottom: 1rem;
+     left: 50%;
+     transform: translateX(-50%);
+     z-index: 1080;
+}
