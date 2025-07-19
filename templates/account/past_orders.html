@@ -4,8 +4,17 @@
   <h2>My Past Orders</h2>
 
   {% if orders %}
+  <p>(Click to expand)</p>
     {% for order in orders %}
-      <div class="translucent-bg">
+    <div>
+      <p>
+        <a class="" data-toggle="collapse" href="#collapseExample{{ order.id }}" role="button" aria-expanded="false" aria-controls="collapseExample">
+          <strong>Order #{{ order.id }}</strong> — placed on {{ order.created_at|date:"jS F Y" }}
+        </a>
+      </p>
+      <div class="collapse" id="collapseExample{{ order.id }}">
+        <div class="card card-body">
+           <div class="translucent-bg">
         <div>
           <strong>Order #{{ order.id }}</strong> — placed on {{ order.created_at|date:"jS F Y" }}
         </div>
@@ -42,6 +51,9 @@
           </div>
         </div>
       </div>
+        </div>
+      </div>
+    </div>
     {% endfor %}
   {% else %}
     <p>You haven't placed any orders yet.</p>
