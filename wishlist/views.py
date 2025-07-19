@@ -42,5 +42,4 @@ def remove_from_wishlist(request, product_id):
     item.delete()
 
     messages.success(request, message)
-    print(message)
     return redirect("my_wishlist")
