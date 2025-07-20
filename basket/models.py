@@ -12,10 +12,9 @@ class BasketItem(models.Model):
     qty = models.PositiveIntegerField(default=1)
 
 def basket_item_count(request):
-    # Want to allow anon checkout in future, but for now this must be authenticcated per user
     if request.user.is_authenticated:
         basket = Basket.objects.filter(user=request.user).first()
-        count = basket.items.aggregate(total_qty=models.Sum('qty'))['total_qty'] or 0
-    else:
-        count = 0
-    return {"basket_item_count": count}
+        if basket:
+            count = basket.items.aggregate(total_qty=models.Sum('qty'))['total_qty'] or 0
+            return {"basket_item_count": count}
+    return {"basket_item_count": 0}
