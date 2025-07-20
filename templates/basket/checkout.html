@@ -2,11 +2,33 @@
 {% block content %}
 <div class="translucent-bg p-5 m-2">
   <h2>Checkout</h2>
+
+  <div class="col border border-dark p-3">
   <form id="payment-form" method="POST">
+    <h3>Billing Address</h3>
     {% csrf_token %}
-    
-    <div class="col border border-dark p-3">
-      <h3>Billing Address</h3>
+    {% if saved_addresses %}
+      <div class="mb-4">
+        <h4>Select a saved address</h4>
+        <select id="bill-address-selector" class="form-control">
+          <option value="">-- Choose an address --</option>
+          {% for address in saved_addresses %}
+            <option 
+              value="{{ address.id }}" 
+              data-name="{{ address.name }}"
+              data-address1="{{ address.address1 }}"
+              data-address2="{{ address.address2 }}"
+              data-town-city="{{ address.town_city }}"
+              data-postcode="{{ address.postcode }}"
+              data-phone="{{ address.phone }}"
+              data-email="{{ address.email }}"
+            >
+              {{ address.name }} — {{ address.address1 }}, {{ address.town_city }}
+            </option>
+          {% endfor %}
+        </select>
+      </div>
+    {% endif %}
       <div class="form-group row">
         <label for="name-on-card" class="col-sm-4 col-form-label">Name on Card</label>
         <div class="col-sm-8">
@@ -40,6 +62,29 @@
     </div>
 
     <div class="col border border-dark p-3 mt-4">
+      {% csrf_token %}
+    {% if saved_addresses %}
+      <div class="mb-4">
+        <h4>Select a saved address</h4>
+        <select id="ship-address-selector" class="form-control">
+          <option value="">-- Choose an address --</option>
+          {% for address in saved_addresses %}
+            <option 
+              value="{{ address.id }}" 
+              data-name="{{ address.name }}"
+              data-address1="{{ address.address1 }}"
+              data-address2="{{ address.address2 }}"
+              data-town-city="{{ address.town_city }}"
+              data-postcode="{{ address.postcode }}"
+              data-phone="{{ address.phone }}"
+              data-email="{{ address.email }}"
+            >
+              {{ address.name }} — {{ address.address1 }}, {{ address.town_city }}
+            </option>
+          {% endfor %}
+        </select>
+      </div>
+    {% endif %}
       <h3>Shipping Address</h3>
       <button type="button" class="btn btn-primary" id="copy-billing-address">Copy Billing Address</button>
       <div class="form-group row">

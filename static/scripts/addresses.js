@@ -19,5 +19,27 @@ $(document).ready(function () {
         
     });
 
-   
+    $("#bill-address-selector").on("change", function () {
+    const selected = $(this).find(":selected");
+
+    if (!selected.val()) return;
+
+    $("#bill-name").val(selected.data("name"));
+    $("#bill-address-line-1").val(selected.data("address1"));
+    $("#bill-address-line-2").val(selected.data("address2"));
+    $("#bill-town-city").val(selected.data("town"));
+    $("#bill-postcode").val(selected.data("postcode"));
+});
+
+   $("#ship-address-selector").on("change", function () {
+    const selected = $(this).find(":selected");
+
+    if (!selected.val()) return;
+
+    $("#ship-name").val(selected.data("name"));
+    $("#ship-address-line-1").val(selected.data("address1"));
+    $("#ship-address-line-2").val(selected.data("address2"));
+    $("#ship-town-city").val(selected.data("town"));
+    $("#ship-postcode").val(selected.data("postcode"));
+});
 });

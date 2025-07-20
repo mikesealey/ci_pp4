@@ -79,10 +79,13 @@ def checkout(request):
     items = basket.items.all()
     basket_total = sum(item.product.price * item.qty for item in items)
 
+    saved_addresses = request.user.addresses.all()
+
     return render(request, "basket/checkout.html", {
         "items": items,
         "basket_total": basket_total,
-        "stripe_public_key": settings.STRIPE_PUBLIC_KEY
+        "stripe_public_key": settings.STRIPE_PUBLIC_KEY,
+        "saved_addresses": saved_addresses
     })
 
 @csrf_exempt
