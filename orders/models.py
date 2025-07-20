@@ -14,6 +14,7 @@ class Address(models.Model):
     postcode = models.CharField(max_length=20)
     phone = models.CharField(max_length=20)
     email = models.EmailField()
+    hidden = models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.name}, {self.address1}, {self.town_city}"

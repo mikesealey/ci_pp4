@@ -157,5 +157,14 @@ def payment_error(request):
     return render(request, "basket/error.html")
 
 def manage_addresses(request):
-    addresses = Address.objects.filter(user=request.user)
-    return render(request, "addresses.html", {"addresses": addresses})
+    print("FETCHING VISIBLE ADDRESSES ONLY!")
+    addresses = Address.objects.filter(user=request.user, hidden=False)
+    return render(request, "addresses.html", {"addresses": addresses} )
+
+@login_required
+def delete_address(request, address_id):
+    address = get_object_or_404(Address, id=address_id, user=request.user)
+    address.hidden = True
+    address.save()
+    messages.success(request, "Address deleted.")
+    return redirect("my_profile")
