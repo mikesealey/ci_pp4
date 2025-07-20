@@ -19,6 +19,7 @@ from .views import homepage, products_list, product_search, my_profile, my_past_
 from . import views
 from catalogue import views
 from .views import CustomLogoutView
+from basket.views import manage_addresses
 
 urlpatterns = [
     path('', homepage, name="homepage" ),
@@ -32,5 +33,6 @@ urlpatterns = [
     path("profile/", my_profile, name="my_profile"),
     path("profile/orders/", my_past_orders, name="past_orders"),
     path("orders/", include("orders.urls")),
-    path("logout/", CustomLogoutView.as_view(next_page="/"), name="logout")
+    path("logout/", CustomLogoutView.as_view(next_page="/"), name="logout"),
+    path("profile/addresses/", manage_addresses, name="manage_addresses"),
 ]

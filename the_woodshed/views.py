@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from orders.models import Order
 from django.contrib import messages
 from django.contrib.auth.views import LogoutView
+from basket.views import Address
 
 def homepage(request):
     return render(request, "base.html")
@@ -33,12 +34,16 @@ def product_search(request):
 
 def my_profile(request):
     orders = Order.objects.filter(user=request.user).order_by("-id")
-    return render(request, "account/profile.html", {"orders": orders})
+    addresses = Address.objects.filter(user=request.user)
+
+    return render(request, "account/profile.html", {"orders": orders, "addresses": addresses})
 
 @login_required
 def my_past_orders(request):
     orders = Order.objects.filter(user=request.user).order_by('-id')
     return render(request, "account/past_orders.html", {"orders": orders})
+
+
 
 class CustomLogoutView(LogoutView):
     def get(self, request, *args, **kwargs):

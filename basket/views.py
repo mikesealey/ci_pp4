@@ -152,9 +152,10 @@ def payment_success(request):
     return render(request, "basket/success.html")
 
 def payment_error(request):
-    
     message = "An error has occcured. Your card as not been charged"
     messages.error(request, message)
     return render(request, "basket/error.html")
 
-
+def manage_addresses(request):
+    addresses = Address.objects.filter(user=request.user)
+    return render(request, "addresses.html", {"addresses": addresses})
