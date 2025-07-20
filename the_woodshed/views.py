@@ -2,6 +2,8 @@ from django.shortcuts import render
 from catalogue.models import Product
 from django.contrib.auth.decorators import login_required
 from orders.models import Order
+from django.contrib import messages
+from django.contrib.auth.views import LogoutView
 
 def homepage(request):
     return render(request, "base.html")
@@ -38,4 +40,9 @@ def my_past_orders(request):
     orders = Order.objects.filter(user=request.user).order_by('-id')
     return render(request, "account/past_orders.html", {"orders": orders})
 
+class CustomLogoutView(LogoutView):
+    def dispatch(self, request, *args, **kwargs):
+        print("LOGGINGOUTLSALLALALALSGLHGLJHDKLGHKLDRHGKHRDN")
+        messages.success(request, "Sucessfully logged out.")
+        return super().dispatch(request, *args, **kwargs)
 
