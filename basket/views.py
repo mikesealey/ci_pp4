@@ -117,9 +117,8 @@ def create_payment_intent(request):
 @login_required
 def payment_success(request):
     basket = Basket.objects.filter(user=request.user).first()
-    print("BASKET>>>>>>", basket)
-
     address_data = request.session.get("checkout_address")
+
 
     if not address_data:
         return render(request, "basket/success.html", {
