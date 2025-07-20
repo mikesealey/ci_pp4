@@ -41,8 +41,7 @@ def my_past_orders(request):
     return render(request, "account/past_orders.html", {"orders": orders})
 
 class CustomLogoutView(LogoutView):
-    def dispatch(self, request, *args, **kwargs):
-        print("LOGGINGOUTLSALLALALALSGLHGLJHDKLGHKLDRHGKHRDN")
-        messages.success(request, "Sucessfully logged out.")
-        return super().dispatch(request, *args, **kwargs)
+    def get(self, request, *args, **kwargs):
+        messages.success(request, "Successfully logged out.")
+        return super().get(request, *args, **kwargs)
 
