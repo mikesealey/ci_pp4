@@ -12,6 +12,7 @@ from orders.models import Address
 from django.contrib import messages
 from django.core.mail import send_mail
 import os
+from django.utils.timezone import now
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
@@ -144,21 +145,45 @@ def payment_success(request):
 
     if basket:
         items = BasketItem.objects.filter(basket=basket)
+
+        message_body_lines = [
+            f"Hi {request.user.first_name or request.user.username},",
+            "",
+            "Thanks for your purchase from The Wood Shed!",
+            "",
+            "Your order summary:",
+        ]
+
+        for item in items:
+            message_body_lines.append(f"- {item.product.name} (x{item.qty})")
+
+        message_body_lines += [
+            "",
+            f"Shipping to: {address.name}, {address.address1}, {address.town_city}, {address.postcode}",
+            "",
+            f"Order placed on: {now().strftime('%d %B %Y at %H:%M')}",
+            "",
+            "We'll be in touch when your order ships.",
+            "",
+            "Thanks again,",
+            "The Wood Shed Team"
+        ]
+
+        send_mail(
+            subject="Your Order Confirmation",
+            message="\n".join(message_body_lines),
+            from_email=os.environ.get("EMAIL_HOST_USER"),
+            recipient_list=[request.user.email]
+        )
+
         for item in items:
             product = item.product
             product.qty_in_stock -= item.qty
             product.save()
+
         items.delete()
 
-    send_mail(
-    subject="Your Order Confirmation",
-    message="Thanks for your purchase!",
-    from_email=os.environ.get("EMAIL_HOST_USER"),
-    recipient_list=[request.user.email]
-)
-
-    message = "Succcess! Your order has been placed"
-    messages.success(request, message)
+    messages.success(request, "Succcess! Your order has been placed")
     return render(request, "basket/success.html")
 
 def payment_error(request):
