@@ -14,7 +14,7 @@ $(document).ready(function () {
         $("#ship-name").val(billAddress.name);
         $("#ship-address-line-1").val(billAddress.address1);
         $("#ship-address-line-2").val(billAddress.address2);
-        $("#ship-town-city").val(billAddress.townCity);
+        $("#ship-address-town-city").val(billAddress.townCity);
         $("#ship-postcode").val(billAddress.postCode);
         
     });
@@ -23,11 +23,10 @@ $(document).ready(function () {
     const selected = $(this).find(":selected");
 
     if (!selected.val()) return;
-
     $("#bill-name").val(selected.data("name"));
     $("#bill-address-line-1").val(selected.data("address1"));
     $("#bill-address-line-2").val(selected.data("address2"));
-    $("#bill-town-city").val(selected.data("town"));
+    $("#bill-address-town-city").val(selected.data("townCity"));
     $("#bill-postcode").val(selected.data("postcode"));
 });
 
@@ -39,7 +38,7 @@ $(document).ready(function () {
     $("#ship-name").val(selected.data("name"));
     $("#ship-address-line-1").val(selected.data("address1"));
     $("#ship-address-line-2").val(selected.data("address2"));
-    $("#ship-town-city").val(selected.data("town"));
+    $("#ship-address-town-city").val(selected.data("townCity"));
     $("#ship-postcode").val(selected.data("postcode"));
 });
 });
