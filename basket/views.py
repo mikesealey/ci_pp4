@@ -79,7 +79,7 @@ def checkout(request):
     items = basket.items.all()
     basket_total = sum(item.product.price * item.qty for item in items)
 
-    saved_addresses = request.user.addresses.all()
+    saved_addresses = request.user.addresses.filter(hidden=False)
 
     return render(request, "basket/checkout.html", {
         "items": items,
@@ -155,11 +155,6 @@ def payment_error(request):
     message = "An error has occcured. Your card as not been charged"
     messages.error(request, message)
     return render(request, "basket/error.html")
-
-def manage_addresses(request):
-    print("FETCHING VISIBLE ADDRESSES ONLY!")
-    addresses = Address.objects.filter(user=request.user, hidden=False)
-    return render(request, "addresses.html", {"addresses": addresses} )
 
 @login_required
 def delete_address(request, address_id):

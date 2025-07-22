@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import add_to_basket, my_basket, remove_from_basket, checkout, create_payment_intent, payment_success, payment_error, delete_address, manage_addresses
+from .views import add_to_basket, my_basket, remove_from_basket, checkout, create_payment_intent, payment_success, payment_error, delete_address
 
 urlpatterns = [
     path("add/<int:product_id>/", add_to_basket, name="add_to_basket"),
@@ -10,5 +10,4 @@ urlpatterns = [
     path("success/", payment_success, name="payment_success"),
     path("error/", payment_error, name="payment_error"),
     path("profile/addresses/delete/<int:address_id>/", delete_address, name="delete_address"),
-        path("profile/addresses/", manage_addresses, name="manage_addresses"),
 ]

@@ -34,7 +34,7 @@ def product_search(request):
 
 def my_profile(request):
     orders = Order.objects.filter(user=request.user).order_by("-id")
-    addresses = Address.objects.filter(user=request.user)
+    addresses = Address.objects.filter(user=request.user, hidden=False)
 
     return render(request, "account/profile.html", {"orders": orders, "addresses": addresses})
 
