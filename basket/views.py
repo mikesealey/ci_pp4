@@ -10,6 +10,8 @@ import json
 from orders.utils import create_order_from_basket
 from orders.models import Address
 from django.contrib import messages
+from django.core.mail import send_mail
+import os
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
@@ -125,6 +127,7 @@ def payment_success(request):
             "error": "No address information found in session."
         })
 
+    # need to find a way to _only_ save the address if it's new.
     address = Address.objects.create(
         user=request.user,
         name=address_data.get("name"),
@@ -146,6 +149,13 @@ def payment_success(request):
             product.qty_in_stock -= item.qty
             product.save()
         items.delete()
+
+    send_mail(
+    subject="Your Order Confirmation",
+    message="Thanks for your purchase!",
+    from_email=os.environ.get("EMAIL_HOST_USER"),
+    recipient_list=[request.user.email]
+)
 
     message = "Succcess! Your order has been placed"
     messages.success(request, message)

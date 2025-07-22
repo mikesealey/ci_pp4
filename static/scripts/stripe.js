@@ -26,7 +26,7 @@ $form.on("submit", async function (e) {
         name: $("#ship-name").val(),
         address1: $("#ship-address-line-1").val(),
         address2: $("#ship-address-line-2").val(),
-        town_city: $("#ship-town-city").val(),
+        town_city: $("#ship-address-town-city").val(),
         postcode: $("#ship-postcode").val(),
         phone: $("#ship-phone").val() || "",
         email: $("#email").val() || ""
