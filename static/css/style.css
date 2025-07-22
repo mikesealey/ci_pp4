@@ -1,7 +1,7 @@
 body {
     background-color: rgb(75, 45, 0);
     background-image: url("../images/pexels-ono-kosuki-5974283.jpg");
-    background-attachment: scroll;
+    background-attachment: fixed;
 }
 
 a { 
