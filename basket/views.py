@@ -30,11 +30,21 @@ def add_to_basket(request, product_id):
     )
 
     if not created:
-        item.qty += 1
-        item.save()
+        # Must check if enough stock _exists_ to add to basket
+        new_qty = item.qty + 1
+        if new_qty > product.qty_in_stock:
+            # If not enough stock, don't update the quantity
+            messages.error(
+                request,
+                f"Cannot add another {product.name} — only {product.qty_in_stock} in stock."
+            )
+        else:
+            # else update the quantity and save the item
+            item.qty = new_qty
+            item.save()
+            message = f"Added {product.name} to basket"
+            messages.success(request, message)
 
-    message = f"Added {product.name} to basket"
-    messages.success(request, message)
     return redirect(request.META.get("HTTP_REFERER", "products_list"))
 
 @login_required
