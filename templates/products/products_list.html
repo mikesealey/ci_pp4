@@ -1,7 +1,22 @@
 {% extends "base.html" %}
-
 {% block content %}
-<!-- <div class="p-5"> -->
+  <!-- Sorting/Fitlering -->
+  <div class="translucent-bg">
+    <form method="get" class="mb-4">
+      <label for="hide_out_of_stock">Hide out of stock</label>
+      <input type="checkbox" id="hide_out_of_stock" name="hide_out_of_stock" value="1" {% if request.GET.hide_out_of_stock == "1" %}checked{% endif %}>
+      <select id="sorting" name="sort">
+        <option value="">Sort by</option>
+        <option value="price_low_high" {% if request.GET.sort == "price_low_high" %}selected{% endif %}>
+          Price: Low to High
+        </option>
+        <option value="price_high_low" {% if request.GET.sort == "price_high_low" %}selected{% endif %}>
+          Price: High to Low
+        </option>
+      </select>
+    </form>
+  </div>
+  <!-- End of sort/filter -->
   <div class="row mt-4">
     {% if products.exists %}
       {% for product in products %}
