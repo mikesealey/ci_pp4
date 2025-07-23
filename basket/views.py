@@ -122,12 +122,12 @@ def payment_success(request):
     basket = Basket.objects.filter(user=request.user).first()
     address_data = request.session.get("checkout_address")
 
-
     if not address_data:
         return render(request, "basket/success.html", {
             "error": "No address information found in session."
         })
 
+    items = list(BasketItem.objects.filter(basket=basket))
     # need to find a way to _only_ save the address if it's new.
     address = Address.objects.create(
         user=request.user,
@@ -139,13 +139,10 @@ def payment_success(request):
         phone=address_data.get("phone"),
         email=address_data.get("email"),
     )
-    print("request.user and address", request.user, address)
 
     create_order_from_basket(request.user, address)
 
-    if basket:
-        items = BasketItem.objects.filter(basket=basket)
-
+    if basket and items:
         message_body_lines = [
             f"Hi {request.user.first_name or request.user.username},",
             "",
@@ -181,7 +178,10 @@ def payment_success(request):
             product.qty_in_stock -= item.qty
             product.save()
 
-        items.delete()
+    messages.success(request, "Success! Your order has been placed")
+    return render(request, "basket/success.html")
+
+
 
     messages.success(request, "Succcess! Your order has been placed")
     return render(request, "basket/success.html")
