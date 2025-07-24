@@ -5,6 +5,7 @@ from orders.models import Order
 from django.contrib import messages
 from django.contrib.auth.views import LogoutView
 from basket.views import Address
+from django.db.models import Q
 
 def homepage(request):
     return render(request, "base.html")
@@ -15,7 +16,7 @@ def products_list(request):
     sort = request.GET.get("sort")
 
     products = Product.objects.all()
-    
+
     if category:
         products = Product.objects.filter(category__iexact=category)
 
@@ -36,7 +37,11 @@ def product_search(request):
     products = Product.objects.all()
 
     if query:
-        products = products.filter(name__icontains=query)
+        products = products.filter(
+            Q(name__icontains=query) |
+            Q(material__icontains=query) |
+            Q(finish__icontains=query)
+        )
     if category:
         products = products.filter(category__iexact=category)
 
