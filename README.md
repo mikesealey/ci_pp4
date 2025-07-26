@@ -44,3 +44,8 @@ if not created:
 This check starts with "is this item already in the basket, or have we created an entry in the basket for it?" - If not created, then it already exists, and we simply want to increase the quantity, _but_ we must check that there's stock to do so. We add one to the ammount of stock in the basket, and compare it to the ammount in stock. We'll let the customer know if they're trying to add more to their basket than we have in stock.
 
 This check only occurs when there is already one in the basket. Prior to the item being added to the basket for the first time, the "Add to basket" button is disabled of `product.qty_in_stock` is zero.
+
+Multi-field search with Q
+https://www.freecodecamp.org/news/what-is-q-in-django-and-why-its-super-useful
+Lets me use the seach bar to search name and/or material and/or finish
+
