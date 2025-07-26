@@ -1,6 +1,4 @@
 $(document).ready(function () {
-    console.log("Addresses!");
-
     $("#copy-billing-address").on("click", function (e) {
         e.preventDefault();
 
