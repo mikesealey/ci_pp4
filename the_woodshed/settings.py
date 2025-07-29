@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 import os
 from pathlib import Path
 from dotenv import load_dotenv
+import dj_database_url
+if os.path.isfile("env.py"):
+    import env
 load_dotenv()
 
 
@@ -121,12 +124,11 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
+print(f"DATABASE_URL is {repr(os.environ.get('DATABASE_URL'))}")
+print(f"Type: {type(os.environ.get('DATABASE_URL'))}")
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
 }
 
 
