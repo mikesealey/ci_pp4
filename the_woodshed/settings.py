@@ -53,7 +53,8 @@ INSTALLED_APPS = [
     'catalogue',
     'wishlist',
     'basket',
-    'orders'
+    'orders',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [

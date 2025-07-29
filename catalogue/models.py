@@ -1,4 +1,5 @@
 from django.db import models
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 class Product(models.Model):
@@ -8,5 +9,8 @@ class Product(models.Model):
     description = models.TextField()
     material = models.CharField(max_length=100)
     finish = models.CharField(max_length=100)
-    images = models.JSONField()  # JSON will hold an arrya of image-URLS
     qty_in_stock = models.PositiveIntegerField()
+
+class ProductImage(models.Model):
+    product = models.ForeignKey(Product, related_name='images', on_delete=models.CASCADE)
+    image = CloudinaryField('image')
