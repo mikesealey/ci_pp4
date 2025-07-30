@@ -1,9 +1,11 @@
 <div class="product-card border translucent-bg p-3">
-  {% if product.images %}
-  <div id="product-card-img-container" class="d-flex justify-content-center border mb-2">
-    <img src="{{ product.images.0.url }}" alt="{{ product.name }}" class="product-card-img"/>
-  </div>
-  {% endif %}
+  {% if product.images.all %}
+  {% with product.images.all|first as first_image %}
+    <div id="product-card-img-container" class="d-flex justify-content-center border mb-2">
+      <img src="{{ first_image.image.url }}" alt="{{ product.name }}" class="product-card-img"/>
+    </div>
+  {% endwith %}
+{% endif %}
   <h4 class="long-text-hidden"><a href="{% url 'product_detail' product.id %}">{{ product.name }}</a></h4>
   <p>Price: £{{ product.price }}</p>
   <div class="d-flex justify-content-between">

@@ -1,6 +1,15 @@
 {% extends "base.html" %}
 
 {% block content %}
+<!-- Silently sets images into array for gallery -->
+<div id="image-data" style="display: none;">
+  [
+  {% for image in product.images.all %}
+    {"url": "{{ image.image.url }}"}{% if not forloop.last %},{% endif %}
+  {% endfor %}
+  ]
+</div>
+
   <div id="" class="border mx-5 translucent-bg mt-4 p-3">
     <!-- Image Gallery - controlled by script at bottom of file -->
     <div id="gallery" class="d-flex flex-row justify-content-center">
@@ -37,9 +46,11 @@
 <script>
     // Django returns 'Python JSON' which uses single-quotes which isn't compatable with JS-JSON
     // Processing Python JSON into legit-JSON
+
   const imageArray = document.getElementById("image-data").textContent
   const processedImageArray = imageArray.replaceAll("'", '"')
-  const images = JSON.parse(processedImageArray)
+  const images = JSON.parse(document.getElementById('image-data').textContent);
+  console.log("IMAGES", images)
 
   let index = -1;
 
