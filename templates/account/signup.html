@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-<div class="border border-dark m-5 p-5 translucent-bg">
+<div class="border m-5 p-5 translucent-bg">
     <h2>Sign Up</h2>
     <form method="post" action="{% url 'account_signup' %}">
         {% csrf_token %}
