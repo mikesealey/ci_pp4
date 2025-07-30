@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="border m-5 p-5 translucent-bg">
+  <h2>Email Confirmation</h2>
+  {% if confirmation %}
+    <p>Thanks for confirming your email address!</p>
+  {% else %}
+    <p>Invalid or expired confirmation link.</p>
+  {% endif %}
+</div>
+{% endblock %}
