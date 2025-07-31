@@ -22,6 +22,7 @@
     {% if items %}
     <div class="border m-5 p-2 translucent-bg">
       <div>
+        <input type="hidden" id="update-url" value="{% url 'update_basket_item_qty' %}">
         <div class="border border-light justify-content-end">
           <div class="pairs d-flex justify-content-between px-5">
             <p class="px-5">Shipping & Handling</p>
@@ -33,11 +34,11 @@
           </div>
           <div class="pairs d-flex justify-content-between px-5">
             <p class="px-5">Basket Total</p>
-            <p>£{{ basket_total }}</p>
+            <p id="basket-total">£{{ basket_total }}</p>
           </div>
           <div class="pairs d-flex justify-content-between px-5">
             <p class="px-5">Order Total</p>
-            <p>£{{order_total}}</p>
+            <p id="order-total">£{{order_total}}</p>
           </div>
         </div>
       </div>
@@ -56,3 +57,4 @@
     </div>
     {% endif %}
 {% endblock %}
+

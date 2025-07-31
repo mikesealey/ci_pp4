@@ -90,6 +90,10 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
+.qty-in-stock {
+    display: none;
+}
+
 /* End of Product Card */
 
 .strikethrough {

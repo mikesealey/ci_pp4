@@ -13,8 +13,13 @@ from django.contrib import messages
 from django.core.mail import send_mail
 import os
 from django.utils.timezone import now
+from django.views.decorators.http import require_POST
+from django.middleware.csrf import get_token
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
+
+shipping_handling = 12 # Shipping and Handling cost
+free_shipping_at = 500 # cost at which shipping becomes free
 
 # Create your views here.
 @login_required
@@ -53,8 +58,6 @@ def my_basket(request):
     items = basket.items.select_related("product") if basket else []
 
     basket_total = sum(item.product.price * item.qty for item in items)
-    shipping_handling = 12 # Shipping and Handling cost
-    free_shipping_at = 500 # cost at which shipping becomes free
     difference_to_free_shipping = free_shipping_at - basket_total
     order_total = basket_total
     if order_total < free_shipping_at:
@@ -208,3 +211,28 @@ def delete_address(request, address_id):
     address.save()
     messages.success(request, "Address deleted.")
     return redirect("my_profile")
+
+@login_required
+@require_POST
+@csrf_exempt
+def update_basket_item_qty(request):
+    data = json.loads(request.body)
+    item_id = data.get("item_id")
+    new_qty = int(data.get("qty"))
+
+    item = BasketItem.objects.get(id=item_id, basket__user=request.user)
+
+    item.qty = new_qty
+    item.save()
+
+    basket = item.basket
+    items = basket.items.select_related("product")
+
+    basket_total = sum(i.product.price * i.qty for i in items)
+    order_total = basket_total if basket_total >= free_shipping_at else basket_total + shipping_handling
+
+    return JsonResponse({
+        "status": "ok",
+        "basket_total": f"£{basket_total}",
+        "order_total": f"£{order_total}"
+    })
