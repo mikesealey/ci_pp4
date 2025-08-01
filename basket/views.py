@@ -85,7 +85,6 @@ def remove_from_basket(request, product_id):
     )
     message = f"Removed {item.product.name} from basket"
     item.delete()
-    print(message)
     messages.success(request, message)
     return redirect(request.META.get("HTTP_REFERER", "my_basket"))
 
