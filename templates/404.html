@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div id="" class="border mx-5 translucent-bg mt-4 p-3">
+    <h1>404 Page not found</h1>
+    <p>The page you're looking for doesn't exist.</p>
+    <p>We've looked in all the sawdust and wood-shavings in The Woodshed, but we couldn't find the page you're looking for.</p>
+    <a href="{% url 'homepage' %}">Return to homepage</a>
+  </div>
+{% endblock %}
