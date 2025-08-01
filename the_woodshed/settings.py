@@ -125,8 +125,6 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-print(f"DATABASE_URL is {repr(os.environ.get('DATABASE_URL'))}")
-print(f"Type: {type(os.environ.get('DATABASE_URL'))}")
 
 DATABASES = {
     'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
