@@ -12,6 +12,11 @@ class BasketItem(models.Model):
     qty = models.PositiveIntegerField(default=1)
 
 def basket_item_count(request):
+    """
+    Returns a dictionary with the total quantity of items in the 
+    authenticated user's basket, or zero if the user is not logged in 
+    or has no basket. (A basket is only created when a new user adds their first product)
+    """
     if request.user.is_authenticated:
         basket = Basket.objects.filter(user=request.user).first()
         if basket:

@@ -13,6 +13,11 @@ class WishlistItem(models.Model):
 
 def wishlist_item_count(request):
      # Want to allow anon checkout/wishlist in future, but for now this must be authenticcated per user
+    """
+    Returns a dictionary with the total quantity of items in the 
+    authenticated user's wishlist, or zero if the user is not logged in 
+    or has no wishlist. (A wishlist is only created when a new user adds their first product)
+    """
     if request.user.is_authenticated:
         wishlist = Wishlist.objects.filter(user=request.user).first()
         if wishlist:
