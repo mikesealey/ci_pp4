@@ -203,8 +203,6 @@ def payment_error(request):
     messages.error(request, message)
     return render(request, "basket/error.html")
 
-
-
 @login_required
 @require_POST
 @csrf_exempt
