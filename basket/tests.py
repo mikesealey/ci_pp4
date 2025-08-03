@@ -24,9 +24,18 @@ class BasketTests(TestCase):
         self.client.login(username="testuser", password="pass")
 
     def test_add_to_basket_creates_basket_and_item(self):
+        # Add one item - item quantity should be 1
         self.login()
         response = self.client.get(reverse("add_to_basket", args=[self.product.id]))
         self.assertRedirects(response, reverse("products_list"))
         basket = Basket.objects.get(user=self.user)
         item = basket.items.get(product=self.product)
         self.assertEqual(item.qty, 1)
+
+    def test_add_to_basket_increments_qty(self):
+        # Add two items - item quantity should be 2
+        self.login()
+        self.client.get(reverse("add_to_basket", args=[self.product.id]))
+        self.client.get(reverse("add_to_basket", args=[self.product.id]))
+        item = Basket.objects.get(user=self.user).items.get(product=self.product)
+        self.assertEqual(item.qty, 2)
