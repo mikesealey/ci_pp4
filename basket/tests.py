@@ -39,3 +39,12 @@ class BasketTests(TestCase):
         self.client.get(reverse("add_to_basket", args=[self.product.id]))
         item = Basket.objects.get(user=self.user).items.get(product=self.product)
         self.assertEqual(item.qty, 2)
+
+    def test_remove_from_basket(self):
+        # Create a basket with an item, remove the item, check if it exists
+        self.login()
+        basket = Basket.objects.create(user=self.user)
+        BasketItem.objects.create(basket=basket, product=self.product, qty=1)
+        response = self.client.get(reverse("remove_from_basket", args=[self.product.id]))
+        self.assertRedirects(response, reverse("my_basket"))
+        self.assertFalse(BasketItem.objects.filter(basket=basket).exists())
