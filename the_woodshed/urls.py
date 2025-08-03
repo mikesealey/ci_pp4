@@ -31,4 +31,4 @@ urlpatterns = [
     path("orders/", include("orders.urls")),
     path("logout/", CustomLogoutView.as_view(next_page="/"), name="logout"),
     path("profile/addresses/delete/<int:address_id>/", delete_address, name="delete_address"),
-
+]
