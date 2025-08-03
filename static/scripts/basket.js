@@ -35,8 +35,8 @@ function updateOrderQty(field) {
     })
     .then(data => {
         if (!data) return
-        $("#basket-total").text("£" + data.basket_total)
-        $("#order-total").text("£" + data.order_total)
+        $("#basket-total").text(data.basket_total)
+        $("#order-total").text(data.order_total)
         $("#update-prompt-" + field).text("")
     })
 }
