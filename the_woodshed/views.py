@@ -55,11 +55,7 @@ def my_profile(request):
 
     return render(request, "account/profile.html", {"orders": orders, "addresses": addresses})
 
-
-
-
 class CustomLogoutView(LogoutView):
     def get(self, request, *args, **kwargs):
         messages.success(request, "Successfully logged out.")
         return super().get(request, *args, **kwargs)
-
