@@ -55,10 +55,6 @@ def my_profile(request):
 
     return render(request, "account/profile.html", {"orders": orders, "addresses": addresses})
 
-@login_required
-def my_past_orders(request):
-    orders = Order.objects.filter(user=request.user).order_by('-id')
-    return render(request, "account/past_orders.html", {"orders": orders})
 
 
 
