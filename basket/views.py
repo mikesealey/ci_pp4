@@ -203,13 +203,7 @@ def payment_error(request):
     messages.error(request, message)
     return render(request, "basket/error.html")
 
-@login_required
-def delete_address(request, address_id):
-    address = get_object_or_404(Address, id=address_id, user=request.user)
-    address.hidden = True
-    address.save()
-    messages.success(request, "Address deleted.")
-    return redirect("my_profile")
+
 
 @login_required
 @require_POST

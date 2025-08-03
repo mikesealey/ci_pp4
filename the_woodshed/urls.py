@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from .views import homepage, products_list, product_search, my_profile
+from .views import homepage, my_profile, delete_address
 from . import views
 from catalogue import views
 from .views import CustomLogoutView
@@ -24,12 +24,11 @@ urlpatterns = [
     path('', homepage, name="homepage" ),
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
-    path('products/', products_list, name="products_list"),
-    path('search', product_search, name="product_search"),
     path("product/<int:pk>/", views.product_detail, name="product_detail"),
     path("wishlist/", include("wishlist.urls")),
     path("basket/", include("basket.urls")),
     path("profile/", my_profile, name="my_profile"),
     path("orders/", include("orders.urls")),
     path("logout/", CustomLogoutView.as_view(next_page="/"), name="logout"),
-]
+    path("profile/addresses/delete/<int:address_id>/", delete_address, name="delete_address"),
+
