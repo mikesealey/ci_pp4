@@ -21,7 +21,7 @@ $(document).ready(function () {
     const selected = $(this).find(":selected");
 
     if (!selected.val()) return;
-    $("#bill-name").val(selected.data("name"));
+    $("#name-on-card").val(selected.data("name"));
     $("#bill-address-line-1").val(selected.data("address1"));
     $("#bill-address-line-2").val(selected.data("address2"));
     $("#bill-address-town-city").val(selected.data("townCity"));
