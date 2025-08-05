@@ -6,7 +6,7 @@ from catalogue.models import Product
 
 # New users might not have a wishlist by default as it's created when they add an item to it
 try:
-    from wishlist.models import WishlistItem
+    from wishlist.models import WishlistItem, Wishlist
 except Exception:
     Wishlist = None
     WishlistItem = None
