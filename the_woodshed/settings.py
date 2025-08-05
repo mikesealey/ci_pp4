@@ -181,3 +181,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STRIPE_PUBLIC_KEY = os.environ.get("STRIPE_PUBLIC_KEY")
 STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY")
 DOMAIN_URL = os.environ.get("DOMAIN_URL")
+
+# STOCK RESERVATIONS
+# how long reservations last (hours)
+# Items added to a basket will immediately impart qty_in_stock, abandonned baskets will return the stock levels after this timeout
+BASKET_RESERVATION_HOURS = 3 

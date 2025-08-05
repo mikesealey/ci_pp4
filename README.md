@@ -50,3 +50,5 @@ https://www.freecodecamp.org/news/what-is-q-in-django-and-why-its-super-useful
 Lets me use the seach bar to search name and/or material and/or finish
 
 NetNinja Django Testing tutorial - https://www.youtube.com/watch?v=OfiCALrGE14&list=PL4cUxeGkcC9ic9O6xDW2d1qMp3rMOb0Nu
+
+Django management commands tutorial here: https://www.geeksforgeeks.org/python/custom-django-management-commands/ 

@@ -12,9 +12,10 @@ from orders.models import Address
 from django.contrib import messages
 from django.core.mail import send_mail
 import os
-from django.utils.timezone import now
+from django.utils import timezone
 from django.views.decorators.http import require_POST
 from django.middleware.csrf import get_token
+
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
@@ -47,8 +48,34 @@ def add_to_basket(request, product_id):
             # else update the quantity and save the item
             item.qty = new_qty
             item.save()
+
+            # Decrements the quantity in stock for 3 hours (check BASKET_RESERVATION_HOURS)
+            product.qty_in_stock -= 1
+            product.save()
+
+            now = timezone.now()
+            hours = getattr(settings, "BASKET_RESERVATION_HOURS", 3)
+            item.reserved_at = now
+            item.reserved_until = now + timezone.timedelta(hours=hours)
+            item.save()
+
             message = f"Added {product.name} to basket"
             messages.success(request, message)
+    
+    # Decrements the quantity in stock for 3 hours (check BASKET_RESERVATION_HOURS)
+    product.qty_in_stock -= 1
+    product.save()
+
+    now = timezone.now()
+    hours = getattr(settings, "BASKET_RESERVATION_HOURS", 3)
+    item.reserved_at = now
+    item.reserved_until = now + timezone.timedelta(hours=hours)
+    item.save()
+
+    message = f"Added {product.name} to basket"
+    messages.success(request, message)
+
+    
 
     return redirect(request.META.get("HTTP_REFERER", "products_list"))
 
@@ -83,6 +110,12 @@ def remove_from_basket(request, product_id):
         basket__user=request.user,
         product__id=product_id
     )
+
+    # Replenishes stock level when item is removed from basket
+    product = item.product
+    product.qty_in_stock += item.qty
+    product.save()
+
     message = f"Removed {item.product.name} from basket"
     item.delete()
     messages.success(request, message)
