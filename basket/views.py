@@ -35,47 +35,35 @@ def add_to_basket(request, product_id):
         defaults={"qty": 1}
     )
 
+    now = timezone.now()
+    hours = getattr(settings, "BASKET_RESERVATION_HOURS", 3)
+
     if not created:
-        # Must check if enough stock _exists_ to add to basket
         new_qty = item.qty + 1
         if new_qty > product.qty_in_stock:
-            # If not enough stock, don't update the quantity
             messages.error(
                 request,
                 f"Cannot add another {product.name} — only {product.qty_in_stock} in stock."
             )
         else:
-            # else update the quantity and save the item
             item.qty = new_qty
+            item.added_to_basket_at = now
+            item.remain_in_basket_until = now + timezone.timedelta(hours=hours)
             item.save()
 
-            # Decrements the quantity in stock for 3 hours (check BASKET_RESERVATION_HOURS)
             product.qty_in_stock -= 1
             product.save()
 
-            now = timezone.now()
-            hours = getattr(settings, "BASKET_RESERVATION_HOURS", 3)
-            item.reserved_at = now
-            item.reserved_until = now + timezone.timedelta(hours=hours)
-            item.save()
+            messages.success(request, f"Added {product.name} to basket")
+    else:
+        product.qty_in_stock -= 1
+        product.save()
 
-            message = f"Added {product.name} to basket"
-            messages.success(request, message)
-    
-    # Decrements the quantity in stock for 3 hours (check BASKET_RESERVATION_HOURS)
-    product.qty_in_stock -= 1
-    product.save()
+        item.added_to_basket_at = now
+        item.remain_in_basket_until = now + timezone.timedelta(hours=hours)
+        item.save()
 
-    now = timezone.now()
-    hours = getattr(settings, "BASKET_RESERVATION_HOURS", 3)
-    item.reserved_at = now
-    item.reserved_until = now + timezone.timedelta(hours=hours)
-    item.save()
-
-    message = f"Added {product.name} to basket"
-    messages.success(request, message)
-
-    
+        messages.success(request, f"Added {product.name} to basket")
 
     return redirect(request.META.get("HTTP_REFERER", "products_list"))
 
