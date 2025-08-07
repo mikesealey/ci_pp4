@@ -1,73 +1,119 @@
-<nav class="navbar navbar-expand-lg navbar-light translucent-bg">
-  <div id="nav-rows" class="container-fluid f-flex flex-column">
-    <div id="top-row" class="container-fluid d-flex">
-      <div class="flex-grow-4">
-        <a id="top-row-logo" class="navbar-brand" href="/">The Woodshed</a>
+<!-- Desktop Navigation -->
+<div class="d-none d-md-block">
+  <nav class="navbar navbar-expand-lg navbar-light translucent-bg">
+    <div id="nav-rows" class="container-fluid f-flex flex-column">
+      <div id="top-row" class="container-fluid d-flex">
+        <div class="flex-grow-4">
+          <a id="top-row-logo" class="navbar-brand" href="/">The Woodshed</a>
+        </div>
+        <div>
+          {% if user.is_authenticated %}
+            <span>{{ user.username }}</span>
+          {% else %}
+            <span></span>
+          {% endif %}
+        </div>
+        <div>
+          <form action="{% url 'product_search' %}" method="get" id="top-row-search" class="d-flex flex-grow-1 px-5">
+            <select name="category" class="flex-grow-4">
+              <option value="">All Categories</option>
+              <option value="bowl">Bowls</option>
+              <option value="chair">Chairs</option>
+              <option value="table">Tables</option>
+              <option value="trinket">Trinkets</option>
+              <option value="vase">Vases</option>
+            </select>
+            <input type="search" name="q" class="flex-grow-1">
+            <button type="submit">Search</button>
+          </form>
+        </div>
+        <div id="top-row-user-links" class="flex-grow-4 d-flex flex-row align-items-center">
+          {% if user.is_authenticated %}
+            <a class="navbar-brand" href="{% url 'my_profile' %}">My Profile</a>
+            <a class="navbar-brand" href="{% url 'logout' %}">Log Out</a>
+          {% else %}
+            <a class="navbar-brand" href="{% url 'account_signup' %}">Register</a>
+            <a class="navbar-brand" href="{% url 'account_login' %}">Log In</a>
+          {% endif %}
+          <a href="{% url 'my_wishlist' %}">
+            <div class="d-flex align-items-center">
+              <div id="wishlist-count" class="d-flex justify-content-center align-items-center">{{ wishlist_item_count }}</div>
+              <i class="fa fa-heart fa-3x"></i>
+            </div>
+          </a>
+          <a href="{% url 'my_basket' %}">
+            <div class="d-flex align-items-center">
+              <div id="basket-count" class="d-flex justify-content-center align-items-center">{{ basket_item_count }}</div>
+              <i class="fa fa-shopping-basket fa-3x"></i>
+            </div>
+          </a>
+        </div>
       </div>
-      <div>
-        {% if user.is_authenticated %}
-          <span>{{ user.username }}</span>
-        {% else %}
-          <span></span>
-        {% endif %}
-      </div>
-      <div>
-        <form action="{% url 'product_search' %}" method="get" id="top-row-search" class="d-flex flex-grow-1 px-5">
-          <select name="category" class="flex-grow-4">
-            <option value="">All Categories</option>
-            <option value="bowl">Bowls</option>
-            <option value="chair">Chairs</option>
-            <option value="table">Tables</option>
-            <option value="trinket">Trinkets</option>
-            <option value="vase">Vases</option>
-          </select>
-          <input type="search" name="q" class="flex-grow-1">
-          <button type="submit">Search</button>
-        </form>
-      </div>
-      <div id="top-row-user-links" class="flex-grow-4 d-flex flex-row align-items-center">
-        {% if user.is_authenticated %}
-          <a class="navbar-brand" href="{% url 'my_profile' %}">My Profile</a>
-          <a class="navbar-brand" href="{% url 'logout' %}">Log Out</a>
-        {% else %}
-          <a class="navbar-brand" href="{% url 'account_signup' %}">Register</a>
-          <a class="navbar-brand" href="{% url 'account_login' %}">Log In</a>
-        {% endif %}
-        <a href="{% url 'my_wishlist' %}">
-          <div class="d-flex align-items-center">
-            <div id="wishlist-count" class="d-flex justify-content-center align-items-center">{{ wishlist_item_count }}</div>
-            <i class="fa-solid fa-heart fa-3x" ></i>
-          </div>
-        </a>
-        <a href="{% url 'my_basket' %}">
-          <div class="d-flex align-items-center">
-            <div id="basket-count" class="d-flex justify-content-center align-items-center">{{ basket_item_count }}</div>
-            <i class="fa-solid fa-basket-shopping fa-3x" ></i>
-          </div>
-        </a>
+      <div class="collapse navbar-collapse container-fluid" id="bottom-row">
+        <ul class="navbar-nav d-flex w-100 justify-content-around">
+          <li class="nav-item d-flex justify-content-center align-items-center flex-grow-1">
+            <a class="nav-link" href="{% url 'products_list' %}">All Products</a>
+          </li>
+          <li class="nav-item d-flex justify-content-center align-items-center flex-grow-1">
+            <a class="nav-link" href="{% url 'products_list' %}?category=bowl">Bowls</a>
+          </li>
+          <li class="nav-item d-flex justify-content-center align-items-center flex-grow-1">
+            <a class="nav-link" href="{% url 'products_list' %}?category=chair">Chairs</a>
+          </li>
+          <li class="nav-item d-flex justify-content-center align-items-center flex-grow-1">
+            <a class="nav-link" href="{% url 'products_list' %}?category=table">Tables</a>
+          </li>
+          <li class="nav-item d-flex justify-content-center align-items-center flex-grow-1">
+            <a class="nav-link" href="{% url 'products_list' %}?category=trinket">Trinkets</a>
+          </li>
+          <li class="nav-item d-flex justify-content-center align-items-center flex-grow-1">
+            <a class="nav-link" href="{% url 'products_list' %}?category=vase">Vases</a>
+          </li>
+        </ul>
       </div>
     </div>
-    <div class="collapse navbar-collapse container-fluid" id="bottom-row">
-      <ul class="navbar-nav d-flex w-100 justify-content-around">
-        <li class="nav-item d-flex justify-content-center align-items-center flex-grow-1">
-          <a class="nav-link" href="{% url 'products_list' %}">All Products</a>
-        </li>
-        <li class="nav-item d-flex justify-content-center align-items-center flex-grow-1">
-          <a class="nav-link" href="{% url 'products_list' %}?category=bowl">Bowls</a>
-        </li>
-        <li class="nav-item d-flex justify-content-center align-items-center flex-grow-1">
-          <a class="nav-link" href="{% url 'products_list' %}?category=chair">Chairs</a>
-        </li>
-        <li class="nav-item d-flex justify-content-center align-items-center flex-grow-1">
-          <a class="nav-link" href="{% url 'products_list' %}?category=table">Tables</a>
-        </li>
-        <li class="nav-item d-flex justify-content-center align-items-center flex-grow-1">
-          <a class="nav-link" href="{% url 'products_list' %}?category=trinket">Trinkets</a>
-        </li>
-        <li class="nav-item d-flex justify-content-center align-items-center flex-grow-1">
-          <a class="nav-link" href="{% url 'products_list' %}?category=vase">Vases</a>
+  </nav>
+</div>
+<!-- End of Desktop Nav -->
+<!-- Mobile Navigation -->
+<div class="d-block d-md-none">
+  <nav class="navbar navbar-light translucent-bg">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">The Woodshed</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mobileNav" aria-controls="mobileNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+    <div class="collapse" id="mobileNav">
+      <ul class="navbar-nav px-3">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'products_list' %}">All Products</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'products_list' %}?category=bowl">Bowls</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'products_list' %}?category=chair">Chairs</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'products_list' %}?category=table">Tables</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'products_list' %}?category=trinket">Trinkets</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'products_list' %}?category=vase">Vases</a>
+          </li>
+          {% if user.is_authenticated %}
+            <li><a class="navbar-brand" href="{% url 'my_profile' %}">My Profile</a></li>
+            <li><a class="navbar-brand" href="{% url 'logout' %}">Log Out</a></li>
+          {% else %}
+            <li><a class="navbar-brand" href="{% url 'account_signup' %}">Register</a></li>
+            <li><a class="navbar-brand" href="{% url 'account_login' %}">Log In</a></li>
+          {% endif %}
         </li>
       </ul>
     </div>
-  </div>
-</nav>
+  </nav>
+</div>
+<!-- End of Mobile Nav -->
