@@ -1,6 +1,5 @@
 $(document).ready(function () {
     // Fetches privacy policy and swaps markdown into html
-
     $.get('/static/docs/privacy_policy.md', function(data) {
         const html = marked.parse(data);
         $('#policy-container').html(html);
@@ -13,7 +12,4 @@ $(document).ready(function () {
 
         }
     });
-
-    
-
 });
