@@ -49,6 +49,11 @@ a {
 
 /* Image Carousel in Product Card */
 /* Shared properties of both peripherary images */
+#gallery {
+    max-width: 100%;
+    overflow: hidden;
+}
+
 #left-image, #right-image {
     max-width: 15% !important;
     filter: grayscale(60%);
