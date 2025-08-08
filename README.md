@@ -41,8 +41,20 @@ This project is for educational purposes only. Do not attempt to place an order 
 ## Contents
 
 ## User Stories
+For this project I have made use of a simple Kanban Board, which is now available as a feature of Github Projects - You can see it here: https://github.com/users/mikesealey/projects/3 
 
 ### As a user
+    - I want to easily log in/out So that to keep my details and orders safe at minimal inconvenience.
+    - I want view more specific details about a product So that I can make an informed decision about price, material, finish, etc
+    - I want to see a gallery/carousel of images depicting a particular product So that I can see physical details not covered by basic stats.
+    - I want to be able to view a list of products So that I can select some products to purchase.
+    - I want to be able to see products in a specific category So that I can more easily find products to fit my requirements
+    - I want to be able to add products to my wishlist So that I can save for later.
+    - I want to be able to add products from wishlist to basket, So that I can keep track of products that I like and buy them
+    - I want to see my basket total So that I can avoid going over-budget.
+    - I want to be able to recover my account/password So that I don't lose my account/order history/wishlist items.
+    - I want To easily register for an account So that I can save account/address details or past orders
+    - I want recive an email confirming successful sign-up So that I know other email confirmations wont go directly to junk.
 
 ## Design Considerations
 
