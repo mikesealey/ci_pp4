@@ -35,13 +35,13 @@
             <a class="navbar-brand" href="{% url 'account_signup' %}">Register</a>
             <a class="navbar-brand" href="{% url 'account_login' %}">Log In</a>
           {% endif %}
-          <a href="{% url 'my_wishlist' %}">
+          <a class="nav-unstyled-link" href="{% url 'my_wishlist' %}">
             <div class="d-flex align-items-center">
               <div id="wishlist-count" class="d-flex justify-content-center align-items-center">{{ wishlist_item_count }}</div>
               <i class="fa fa-heart fa-3x"></i>
             </div>
           </a>
-          <a href="{% url 'my_basket' %}">
+          <a class="nav-unstyled-link" href="{% url 'my_basket' %}">
             <div class="d-flex align-items-center">
               <div id="basket-count" class="d-flex justify-content-center align-items-center">{{ basket_item_count }}</div>
               <i class="fa fa-shopping-basket fa-3x"></i>
