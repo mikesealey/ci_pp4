@@ -104,6 +104,30 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'products_list' %}?category=vase">Vases</a>
           </li>
+          <hr class="solid">
+          <li>
+            <a class="nav-unstyled-link" href="{% url 'my_wishlist' %}">
+              <div class="d-flex align-items-center justify-content-center">
+                <p class="my-0 d-flex align-items-center">My Wishlist</p>
+                <div id="wishlist-count" class="d-flex justify-content-center align-items-center">{{ wishlist_item_count }}</div>
+                <i class="fa fa-heart fa-3x"></i>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a class="nav-unstyled-link" href="{% url 'my_basket' %}">
+            <div class="d-flex align-items-center">
+              <p class="my-0 d-flex align-items-center">My Basket</p>
+              <div id="basket-count" class="d-flex justify-content-center align-items-center">{{ basket_item_count }}</div>
+              <i class="fa fa-shopping-basket fa-3x"></i>
+            </div>
+            </a>
+          </li>
+          <hr class="solid">
+          
+          
+
+
           {% if user.is_authenticated %}
             <li><a class="navbar-brand" href="{% url 'my_profile' %}">My Profile</a></li>
             <li><a class="navbar-brand" href="{% url 'logout' %}">Log Out</a></li>

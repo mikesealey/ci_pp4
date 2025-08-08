@@ -2,6 +2,8 @@ body {
     background-color: rgb(75, 45, 0);
     background-image: url("../images/pexels-ono-kosuki-5974283.jpg");
     background-attachment: fixed;
+    max-width: 100vw;
+    overflow-x: hidden;
 }
 
 a { 
@@ -125,9 +127,5 @@ input::-webkit-inner-spin-button {
   outline: none;
   box-shadow: none;
 }
-
-/* a:hover {
-  text-decoration: none;
-} */
 
 /* end of Navigatuo*/
