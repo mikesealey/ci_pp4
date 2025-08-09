@@ -28,3 +28,32 @@ def delete_address(request, address_id):
     address.save()
     messages.success(request, "Address deleted.")
     return redirect("my_profile")
+
+from allauth.account.views import ConfirmEmailView
+import logging
+
+logger = logging.getLogger(__name__)
+
+class DebugConfirmEmailView(ConfirmEmailView):
+    def post(self, *args, **kwargs):
+        logger.error("ConfirmEmailView POST called")
+        resp = super().post(*args, **kwargs)
+        logger.error(f"Confirmation: {self.object}, verified: {self.object.verified}")
+        return resp
+
+    def get(self, *args, **kwargs):
+        logger.error("ConfirmEmailView GET called")
+        return super().get(*args, **kwargs)
+    
+
+
+
+import logging
+logger = logging.getLogger(__name__)
+
+class ConfirmEmailAutoLoginView(ConfirmEmailView):
+    def get(self, *args, **kwargs):
+        logger.error(f"ConfirmEmailAutoLoginView called with key: {kwargs.get('key')}")
+        self.object = self.get_object()
+        self.object.confirm(self.request)
+        return redirect('/accounts/login/')
