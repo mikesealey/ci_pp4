@@ -218,6 +218,7 @@ Status - Pass
 
 ### Additional Testing
 
+
 ### Functional Testing
 
 ### Unit Tests in Django
@@ -227,8 +228,27 @@ Status - Pass
 ## Deployment
 
 ## Cloning This Repo
+## Cloning this repo
+
+You may wish to clone this repo to work on it yourself
+
+- At the top of the page above the file-list, click the "Code" button
+- Copy the URL `https://github.com/mikesealey/ci_pp4.git`
+- On the command line, navigate to where you want to clone this repository
+- run the following command
+  `git clone https://github.com/mikesealey/ci_pp4.git`
+- `cd` into the folder, and then run `npm i` to install all dependancies
+
+  ![Cloning this project on Github]( ./readme_images/Screenshot%202025-08-09%20at%2022.39.02.png)
 
 ## Forking This Repo
+You may also wish to fork this repo to develop it further for your own needs
+
+- In the top bar, click "Fork"
+- Choose the github account or organisation where you want to fork the repository
+- Github will now create a copy (or _fork_) of the repository in your account.
+
+![Forking this project on Github](./readme_images/Screenshot%202025-08-09%20at%2022.40.50.png)
 
 ## Credits
 
