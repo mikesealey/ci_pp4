@@ -1,0 +1,7 @@
+Hello and welcome to The Woodshed
+
+To activate your account, please click the link below.
+
+{{ activate_url }}
+
+Alternatively, please paste the link into your browser's address bar.
