@@ -121,31 +121,100 @@ See the conversation here: https://chatgpt.com/share/68966b84-1954-8004-a7bd-d6e
 ### Testing User Stories
 
 ####  I want To easily register for an account So that I can save account/address details or past orders
-https://jam.dev/c/b5de136c-7f07-4e8a-868b-8fd72b7e5c42
+Steps:
+1. Navigate to the homepage
+2. Click "Register"
+3. Provide email, username, and password (twice)
+4. Click "Sign up"
+
+Status: Pass - Toast notification lets the user know
 
 ####  I want recive an email confirming successful sign-up So that I know other email confirmations wont go directly to junk.
-!["An email inviting the user to activate their new account"](./readme_images/Screenshot%202025-08-09%20at%2019.51.11.png "An email inviting the user to activate their new account")
+Steps:
+1. Upon successfully completing the registration, find the "Confirm your account" email that gets set to the user's email address
+2. Open the URL in the email
+3. Account is verified - user is redirected to Log In page
 
-!["Thank you for confirming your email"](./readme_images/Screenshot%202025-08-09%20at%2019.53.07.png "The Woodshed landing page after clicking the link to confirm the user's email and activating the account")
+Status - Pass - user can now log in
+
 
 #### I want to easily log in/out So that to keep my details and orders safe at minimal inconvenience.
+Steps:
+1. With a verified account, visit the site and click "Log In"
+2. While logged in, visit My Profile
+3. Log out
 
+Status - Pass
 
 ####  I want to be able to recover my account/password So that I don't lose my account/order history/wishlist items.
 
+Steps:
+1. Visit the login page
+2. Click "Forgot Password?"
+3. Provide the email of a registered account
+4. A password reset email will be sent to that account
+5. Click the link provided to reset the password
+6. Log in with the new credentials
 
+Status - pass
+
+####  I want to be able to view a list of products So that I can select some products to purchase.
+Steps:
+1. Visit The Woodshed
+2. View a Products List (All Products, Bowls, Chairs, Tables, Trinkets, Vases)
 
 ####  I want view more specific details about a product So that I can make an informed decision about price, material, finish, etc
+Steps:
+1. Visit The Woodshed and view a Products List (All Products, Bowls, Chairs, Tables, Trinkets, Vases)
+2. Click "See More Details" on a Product Card
+
+Status - Pass - More product details including price, material, finish, and a description are available
+
 ####  I want to see a gallery/carousel of images depicting a particular product So that I can see physical details not covered by basic stats.
-####  I want to be able to view a list of products So that I can select some products to purchase.
+Steps:
+1. Visit The Woodshed and view a Products List (All Products, Bowls, Chairs, Tables, Trinkets, Vases)
+2. Click "See More Details" on a Product Card
+3. Click the images to the side of the main image to scroll the gallery in that direction
+or
+3. Click the main image to scroll the gallery to the right
+
+Status - Pass
+
 ####  I want to be able to see products in a specific category So that I can more easily find products to fit my requirements
+Steps:
+1. Visit The Woodshed
+2. Click one of the following options from the navigation bar - Bowls, Chairs, Tables, Trinkets, Vases
+
+Status - Pass
 
 ####  I want to be able to add products to my wishlist So that I can save for later.
+Steps:
+1. Visit the Woodshed as a logged in user and view a Products List (All Products, Bowls, Chairs, Tables, Trinkets, Vases)
+2. Decide on a product to add to the wishlist and click "Add to Wishlist"
+Or
+2. Click "See more details"
+3. Click "Add to Wishlist"
+
 ####  I want to be able to add products from wishlist to basket, So that I can keep track of products that I like and buy them
+Steps:
+1. Visit the Woodshed as a logged in user and view a Products List (All Products, Bowls, Chairs, Tables, Trinkets, Vases)
+2. Decide on a product to add to the basket and click "Add to Basket"
+Or
+2. Click "See more details"
+3. Click "Add to Basket"
+Or
+1. Visit the Woodshed as a logged in user with an item already saved in the wishlist
+2. Navigate to Wishlist
+3. Click "add to basket" on a product
+
+Status - Pass
+
 ####  I want to see my basket total So that I can avoid going over-budget.
+1. Visit the Woodshed as a logged in user and view a Products List (All Products, Bowls, Chairs, Tables, Trinkets, Vases)
+2. Decide on a product to add to the basket and click "Add to Basket"
+3. Navigate to the Basket and scroll to the end of the list of products in the basket to the basket summary
 
-
-
+Status - Pass
 
 ### Additional Testing
 
