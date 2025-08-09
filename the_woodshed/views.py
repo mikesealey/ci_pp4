@@ -45,15 +45,8 @@ class DebugConfirmEmailView(ConfirmEmailView):
         logger.error("ConfirmEmailView GET called")
         return super().get(*args, **kwargs)
     
-
-
-
-import logging
-logger = logging.getLogger(__name__)
-
 class ConfirmEmailAutoLoginView(ConfirmEmailView):
     def get(self, *args, **kwargs):
-        logger.error(f"ConfirmEmailAutoLoginView called with key: {kwargs.get('key')}")
         self.object = self.get_object()
         self.object.confirm(self.request)
         return redirect('/accounts/login/')
