@@ -52,22 +52,22 @@
       <div class="collapse navbar-collapse container-fluid" id="bottom-row">
         <ul class="navbar-nav d-flex w-100 justify-content-around">
           <li class="nav-item d-flex justify-content-center align-items-center flex-grow-1">
-            <a class="nav-link" href="{% url 'products_list' %}">All Products</a>
+            <a class="nav-link {% if request.path == '/products/products/' and not request.GET.category %}font-weight-bold{% endif %}" href="{% url 'products_list' %}">All Products</a>
           </li>
           <li class="nav-item d-flex justify-content-center align-items-center flex-grow-1">
-            <a class="nav-link" href="{% url 'products_list' %}?category=bowl">Bowls</a>
+            <a class="nav-link {% if request.GET.category == 'bowl' %}font-weight-bold{% endif %}" href="{% url 'products_list' %}?category=bowl">Bowls</a>
           </li>
           <li class="nav-item d-flex justify-content-center align-items-center flex-grow-1">
-            <a class="nav-link" href="{% url 'products_list' %}?category=chair">Chairs</a>
+            <a class="nav-link {% if request.GET.category == 'chair' %}font-weight-bold{% endif %}" href="{% url 'products_list' %}?category=chair">Chairs</a>
           </li>
           <li class="nav-item d-flex justify-content-center align-items-center flex-grow-1">
-            <a class="nav-link" href="{% url 'products_list' %}?category=table">Tables</a>
+            <a class="nav-link {% if request.GET.category == 'table' %}font-weight-bold{% endif %}" href="{% url 'products_list' %}?category=table">Tables</a>
           </li>
           <li class="nav-item d-flex justify-content-center align-items-center flex-grow-1">
-            <a class="nav-link" href="{% url 'products_list' %}?category=trinket">Trinkets</a>
+            <a class="nav-link {% if request.GET.category == 'trinket' %}font-weight-bold{% endif %}" href="{% url 'products_list' %}?category=trinket">Trinkets</a>
           </li>
           <li class="nav-item d-flex justify-content-center align-items-center flex-grow-1">
-            <a class="nav-link" href="{% url 'products_list' %}?category=vase">Vases</a>
+            <a class="nav-link {% if request.GET.category == 'vase' %}font-weight-bold{% endif %}" href="{% url 'products_list' %}?category=vase">Vases</a>
           </li>
         </ul>
       </div>
@@ -87,28 +87,28 @@
     <div class="collapse" id="mobileNav">
       <ul class="navbar-nav px-3">
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'products_list' %}">All Products</a>
+            <a class="nav-link {% if request.path == '/products/products/' and not request.GET.category %}font-weight-bold{% endif %}" href="{% url 'products_list' %}">All Products</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'products_list' %}?category=bowl">Bowls</a>
+            <a class="nav-link {% if request.GET.category == 'bowl' %}font-weight-bold{% endif %}" href="{% url 'products_list' %}?category=bowl">Bowls</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'products_list' %}?category=chair">Chairs</a>
+            <a class="nav-link {% if request.GET.category == 'chair' %}font-weight-bold{% endif %}" href="{% url 'products_list' %}?category=chair">Chairs</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'products_list' %}?category=table">Tables</a>
+            <a class="nav-link {% if request.GET.category == 'table' %}font-weight-bold{% endif %}" href="{% url 'products_list' %}?category=table">Tables</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'products_list' %}?category=trinket">Trinkets</a>
+            <a class="nav-link {% if request.GET.category == 'trinket' %}font-weight-bold{% endif %}" href="{% url 'products_list' %}?category=trinket">Trinkets</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'products_list' %}?category=vase">Vases</a>
+            <a class="nav-link {% if request.GET.category == 'vase' %}font-weight-bold{% endif %}" href="{% url 'products_list' %}?category=vase">Vases</a>
           </li>
           <hr class="solid">
           <li>
             <a class="nav-unstyled-link" href="{% url 'my_wishlist' %}">
               <div class="d-flex align-items-center justify-content-center">
-                <p class="my-0 d-flex align-items-center">My Wishlist</p>
+                <p class="my-0 d-flex align-items-center {% if request.path == '/wishlist/my_wishlist/' and not request.GET.category %}font-weight-bold{% endif %}">My Wishlist</p>
                 <div id="wishlist-count" class="d-flex justify-content-center align-items-center">{{ wishlist_item_count }}</div>
                 <i class="fa fa-heart fa-3x"></i>
               </div>
@@ -117,7 +117,7 @@
           <li>
             <a class="nav-unstyled-link" href="{% url 'my_basket' %}">
             <div class="d-flex align-items-center">
-              <p class="my-0 d-flex align-items-center">My Basket</p>
+              <p class="my-0 d-flex align-items-center {% if request.path == '/basket/my_basket/' and not request.GET.category %}font-weight-bold{% endif %}">My Basket</p>
               <div id="basket-count" class="d-flex justify-content-center align-items-center">{{ basket_item_count }}</div>
               <i class="fa fa-shopping-basket fa-3x"></i>
             </div>
@@ -129,7 +129,7 @@
 
 
           {% if user.is_authenticated %}
-            <li><a class="navbar-brand" href="{% url 'my_profile' %}">My Profile</a></li>
+            <li><a class="navbar-brand {% if request.path == '/profile/' and not request.GET.category %}font-weight-bold{% endif %}" href="{% url 'my_profile' %}">My Profile</a></li>
             <li><a class="navbar-brand" href="{% url 'logout' %}">Log Out</a></li>
           {% else %}
             <li><a class="navbar-brand" href="{% url 'account_signup' %}">Register</a></li>
