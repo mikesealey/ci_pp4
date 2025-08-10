@@ -3,11 +3,11 @@
 <h2>Addresses</h2>
   {% for address in addresses %}
       <p>
-        <a data-toggle="collapse" href="#collapse{{ address.id }}" role="button" aria-expanded="false" aria-controls="collapseExample">
+        <a data-toggle="collapse" href="#collapse-address-{{ address.id }}" role="button" aria-expanded="false" aria-controls="collapse-address-{{ address.id }}">
           <p>{{ address.name }}, {{ address.address1 }}</p>
         </a>
       </p>
-      <div class="collapse" id="collapse{{ address.id }}">
+      <div class="collapse" id="collapse-address-{{ address.id }}">
         <div class="card card-body">
           <div class="border p-3 mb-3">
             hidden: {{ address.hidden }}

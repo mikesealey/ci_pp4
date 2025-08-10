@@ -119,10 +119,33 @@ See the conversation here: https://chatgpt.com/share/68966b84-1954-8004-a7bd-d6e
 ### Accessibility
 
 ### Code Validation
-Validating the HTML
+In order to validate the HTML of this project I have used [https://validator.w3.org/nu](https://validator.w3.org/nu). When validating, I have fed the URL of the deployed app. I had previously tried to validate individual files, but this causes errors when HTML components such as the Product Card does not have Head or Body tags, because it is only meant to be used as part of a larger page. Taking this approach actually makes validating the HTML easier, as I can validate multiple components at once.
 
-Homepage
-![](./readme_images/Screenshot%202025-08-10%20at%2015.37.07.png)
+- Homepage - https://validator.w3.org/nu/?showsource=yes&doc=https%3A%2F%2Fci-pp4-the-woodshed-69e11d9176ff.herokuapp.com%2F - No errors or warnings to show
+![Validation checks on homepage](./readme_images/validation_homepage.png)
+
+- All products list - https://validator.w3.org/nu/?showsource=yes&doc=https%3A%2F%2Fci-pp4-the-woodshed-69e11d9176ff.herokuapp.com%2Fproducts%2Fproducts%2F - No errors or warnings to show
+![Valdaiton checks on Producst List](./readme_images/validation_products_list.png)
+
+- Bowls - https://ci-pp4-the-woodshed-69e11d9176ff.herokuapp.com/products/products/?category=bowl - No errors or warnings to show
+![Validaiton checks on Bowls list](./readme_images/validation_bowl.png)
+
+- Chairs - https://ci-pp4-the-woodshed-69e11d9176ff.herokuapp.com/products/products/?category=chair - No errors or warnings to show
+![Validation checks on Chairs list](./readme_images/validation_chair.png)
+
+- Tables - https://ci-pp4-the-woodshed-69e11d9176ff.herokuapp.com/products/products/?category=table - No errors or warnings to show
+![Validaiton checks on Tables list](./readme_images/validation_table.png)
+
+- Trinkets - https://ci-pp4-the-woodshed-69e11d9176ff.herokuapp.com/products/products/?category=trinket - No errors or warnings to show
+![Validaiton checks on Trinkets list](./readme_images/validation_trinket.png)
+
+- Vases - https://ci-pp4-the-woodshed-69e11d9176ff.herokuapp.com/products/products/?category=vase - No errors or warnings to show
+![Validaiton checks on Vases list](./readme_images/validation_vase.png)
+
+- Bowls - https://ci-pp4-the-woodshed-69e11d9176ff.herokuapp.com/products/products/?category=chair - No errors or warnings to show
+- Bowls - https://ci-pp4-the-woodshed-69e11d9176ff.herokuapp.com/products/products/?category=chair - No errors or warnings to show
+
+
 
 
 

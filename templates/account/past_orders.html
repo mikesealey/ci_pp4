@@ -8,11 +8,11 @@
     {% for order in orders %}
     <div>
       <p>
-        <a class="" data-toggle="collapse" href="#collapseExample{{ order.id }}" role="button" aria-expanded="false" aria-controls="collapseExample">
+        <a class="" data-toggle="collapse" href="#collapse-order-{{ order.id }}" role="button" aria-expanded="false" aria-controls="collapse-order-{{ order.id }}">
           <strong>Order #{{ order.id }}</strong> — placed on {{ order.created_at|date:"jS F Y" }}
         </a>
       </p>
-      <div class="collapse" id="collapseExample{{ order.id }}">
+      <div class="collapse" id="collapse-order-{{ order.id }}">
         <div class="card card-body">
            <div class="translucent-bg">
         <div>
