@@ -1,7 +1,6 @@
 $(document).ready(function(){
     // Django returns 'Python JSON' which uses single-quotes which isn't compatable with JS-JSON
     // Processing Python JSON into legit-JSON
-    const imageArray = $("#image-data").text()
     const images = JSON.parse($('#image-data').text());
 
     let index = -1;
