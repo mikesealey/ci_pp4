@@ -14,7 +14,7 @@ a {
     text-decoration: none;
 }
 
-#basket-count, #wishlist-count {
+.basket-count, .wishlist-count {
     height: 30px;
     width: 30px;
     border-radius: 20px;

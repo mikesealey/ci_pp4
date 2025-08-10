@@ -37,13 +37,13 @@
           {% endif %}
           <a class="nav-unstyled-link" href="{% url 'my_wishlist' %}">
             <div class="d-flex align-items-center">
-              <div id="wishlist-count" class="d-flex justify-content-center align-items-center">{{ wishlist_item_count }}</div>
+              <div class="wishlist-count d-flex justify-content-center align-items-center">{{ wishlist_item_count }}</div>
               <i class="fa fa-heart fa-3x"></i>
             </div>
           </a>
           <a class="nav-unstyled-link" href="{% url 'my_basket' %}">
             <div class="d-flex align-items-center">
-              <div id="basket-count" class="d-flex justify-content-center align-items-center">{{ basket_item_count }}</div>
+              <div class="basket-count d-flex justify-content-center align-items-center">{{ basket_item_count }}</div>
               <i class="fa fa-shopping-basket fa-3x"></i>
             </div>
           </a>
@@ -104,12 +104,11 @@
           <li class="nav-item">
             <a class="nav-link {% if request.GET.category == 'vase' %}font-weight-bold{% endif %}" href="{% url 'products_list' %}?category=vase">Vases</a>
           </li>
-          <hr class="solid">
           <li>
             <a class="nav-unstyled-link" href="{% url 'my_wishlist' %}">
               <div class="d-flex align-items-center justify-content-center">
                 <p class="my-0 d-flex align-items-center {% if request.path == '/wishlist/my_wishlist/' and not request.GET.category %}font-weight-bold{% endif %}">My Wishlist</p>
-                <div id="wishlist-count" class="d-flex justify-content-center align-items-center">{{ wishlist_item_count }}</div>
+                <div class="wishlist-count d-flex justify-content-center align-items-center">{{ wishlist_item_count }}</div>
                 <i class="fa fa-heart fa-3x"></i>
               </div>
             </a>
@@ -118,16 +117,11 @@
             <a class="nav-unstyled-link" href="{% url 'my_basket' %}">
             <div class="d-flex align-items-center">
               <p class="my-0 d-flex align-items-center {% if request.path == '/basket/my_basket/' and not request.GET.category %}font-weight-bold{% endif %}">My Basket</p>
-              <div id="basket-count" class="d-flex justify-content-center align-items-center">{{ basket_item_count }}</div>
+              <div class="basket-count d-flex justify-content-center align-items-center">{{ basket_item_count }}</div>
               <i class="fa fa-shopping-basket fa-3x"></i>
             </div>
             </a>
           </li>
-          <hr class="solid">
-          
-          
-
-
           {% if user.is_authenticated %}
             <li><a class="navbar-brand {% if request.path == '/profile/' and not request.GET.category %}font-weight-bold{% endif %}" href="{% url 'my_profile' %}">My Profile</a></li>
             <li><a class="navbar-brand" href="{% url 'logout' %}">Log Out</a></li>
@@ -135,7 +129,6 @@
             <li><a class="navbar-brand" href="{% url 'account_signup' %}">Register</a></li>
             <li><a class="navbar-brand" href="{% url 'account_login' %}">Log In</a></li>
           {% endif %}
-        </li>
       </ul>
     </div>
   </nav>
