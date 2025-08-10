@@ -18,7 +18,6 @@ if os.path.isfile("env.py"):
 load_dotenv()
 
 
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -27,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-ij&#8-%%v7*$so=-gc#crp^exc*ih@i8e8sn2=ljjl4j$*v%)6'
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -35,7 +34,6 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     '.herokuapp.com'
 ]
-
 
 # Application definition
 
@@ -90,12 +88,10 @@ TEMPLATES = [
     },
 ]
 
-import sys
-print("TEMPLATE DIRS:", [os.path.join(BASE_DIR, "templates")], file=sys.stderr)
-
 STATICFILES_DIRS = [BASE_DIR / "static"]
 
-# Authenication Backends taken from https://docs.allauth.org/en/latest/installation/quickstart.html
+# Authenication Backends taken from
+# https://docs.allauth.org/en/latest/installation/quickstart.html
 AUTHENTICATION_BACKENDS = [ 
 
     # Needed to login by username in Django admin, regardless of `allauth`
@@ -168,7 +164,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-SITE_ID =1
+SITE_ID = 1
 
 
 # Static files (CSS, JavaScript, Images)
@@ -190,5 +186,6 @@ DOMAIN_URL = os.environ.get("DOMAIN_URL")
 
 # STOCK RESERVATIONS
 # how long reservations last (hours)
-# Items added to a basket will immediately impart qty_in_stock, abandonned baskets will return the stock levels after this timeout
+# Items added to a basket will immediately impart qty_in_stock, abandonned 
+# baskets will return the stock levels after this timeout
 BASKET_RESERVATION_HOURS = 3

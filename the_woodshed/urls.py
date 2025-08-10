@@ -16,23 +16,27 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from .views import homepage, my_profile, delete_address
-from . import views
 from .views import CustomLogoutView
 
 from django.urls import re_path
 from the_woodshed.views import ConfirmEmailAutoLoginView
 
 urlpatterns = [
-    re_path(r'^accounts/confirm-email/(?P<key>[-:\w]+)/$', ConfirmEmailAutoLoginView.as_view(), name='account_confirm_email'),
+    re_path(
+        r'^accounts/confirm-email/(?P<key>[-:\w]+)/$',
+        ConfirmEmailAutoLoginView.as_view(), name='account_confirm_email'),
     path('accounts/', include('allauth.urls')),
-    path('', homepage, name="homepage" ),
+    path('', homepage, name="homepage"),
     path('admin/', admin.site.urls),
     path("wishlist/", include("wishlist.urls")),
     path("basket/", include("basket.urls")),
     path("profile/", my_profile, name="my_profile"),
     path("orders/", include("orders.urls")),
     path("logout/", CustomLogoutView.as_view(next_page="/"), name="logout"),
-    path("profile/addresses/delete/<int:address_id>/", delete_address, name="delete_address"),
+    path(
+        "profile/addresses/delete/<int:address_id>/",
+        delete_address,
+        name="delete_address"
+        ),
     path("products/", include("catalogue.urls")),
-
 ]
