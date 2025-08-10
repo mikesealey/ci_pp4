@@ -118,7 +118,7 @@ See the conversation here: https://chatgpt.com/share/68966b84-1954-8004-a7bd-d6e
 
 ### Accessibility
 
-### Code Validation
+### HTML Validation
 In order to validate the HTML of this project I have used [https://validator.w3.org/nu](https://validator.w3.org/nu). When validating, I have fed the URL of the deployed app. I had previously tried to validate individual files, but this causes errors when HTML components such as the Product Card does not have Head or Body tags, because it is only meant to be used as part of a larger page. Taking this approach actually makes validating the HTML easier, as I can validate multiple components at once.
 
 - Homepage - https://validator.w3.org/nu/?showsource=yes&doc=https%3A%2F%2Fci-pp4-the-woodshed-69e11d9176ff.herokuapp.com%2F - No errors or warnings to show
@@ -142,7 +142,7 @@ In order to validate the HTML of this project I have used [https://validator.w3.
 - Vases - https://ci-pp4-the-woodshed-69e11d9176ff.herokuapp.com/products/products/?category=vase - No errors or warnings to show
 ![Validaiton checks on Vases list](./readme_images/validation_vase.png)
 
-- Registration - https://validator.w3.org/nu/?showsource=yes&doc=https%3A%2F%2Fci-pp4-the-woodshed-69e11d9176ff.herokuapp.com%2Faccounts%2Fsignup%2F - Some false-positives on the baked-in Django AllAuth templates. 
+- Registration - https://validator.w3.org/nu/?showsource=yes&doc=https%3A%2F%2Fci-pp4-the-woodshed-69e11d9176ff.herokuapp.com%2Faccounts%2Fsignup%2F - Some false-positives on the baked-in Django AllAuth templates, but this isn't code I've written, it's simply part of Django itself. 
 ![Validation Checks on Sign Up](./readme_images/validation_signup.png)
 ![Validation issues on Sign Up](./readme_images/validation_signup_clarification.png)
 
@@ -160,9 +160,33 @@ Unfortunately, this validation tool can't log in for me, so it's not possible to
 - My Basket - No errors or warnings to show
 ![Validation checks on My Basket](./readme_images/validation_basket.png)
 
+### JavaScript Validation
 
+I fed all JavaScript in this project into https://jshint.com/ to confirm that it is valid and clean JS. It mostly complained about missing (uneccesary) semicolons, but occasionally got tripped up by jQuery.
 
+Validating addresses.js
+![Validating addresses.js](./readme_images/validation_addressess.png)
 
+Validating basket.js
+![Validating basket.js](./readme_images/validation_basketjs.png)
+
+Validating filters.js
+![Validating filters.js](./readme_images/validation_filters.png)
+
+Validating gallery.js
+![Validating gallery.js](./readme_images/validation_gallery.png)
+
+Validating navigation.js
+![Validating navigation.js](./readme_images/validation_navigation.png)
+
+Validating privacy_policy.js
+![Validating privacy_policy.js](./readme_images/validation_privacy_policy.png)
+
+Validating stripe.js
+![Validating stripe.js](./readme_images/validation_stripe.png)
+
+Validating toast.js
+![Validating toast.js](./readme_images/validation_toast.png)
 ### Code Documentation
 
 ## Testing
