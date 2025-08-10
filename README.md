@@ -119,6 +119,12 @@ See the conversation here: https://chatgpt.com/share/68966b84-1954-8004-a7bd-d6e
 ### Accessibility
 
 ### Code Validation
+Validating the HTML
+
+Homepage
+![](./readme_images/Screenshot%202025-08-10%20at%2015.37.07.png)
+
+
 
 ### Code Documentation
 
