@@ -58,7 +58,7 @@ For this project I have made use of a simple Kanban Board, which is now availabl
 
 Early on in the development of The Woodshed, I knew that I would like to make reusable components as much as possible. The Product Card shown in the wireframe is itself an HTML template. 
 
-![Reusable Components - The Product Card](./readme_images/Screenshot%202025-08-09%20at%2016.06.50.png  "Showing the reusable Product Card component")
+![Reusable Components - The Product Card](./readme_images/  "Showing the reusable Product Card component")
 
 This means that when passing an array of products, I can simply loop over them and pass in a _this-product_ to a Product Card as follows
 ```Django
@@ -84,7 +84,7 @@ A lot of the initial understanding of management commands came from this Geeks4G
 
 I used Balsamiq Wireframes to mock up a plan for how I would like The Woodshed to look.
 
-![Homepage Wireframe](./readme_images/Screenshot%202025-08-09%20at%2015.54.09.png "An initial design of the Homepage in Balsamiq Wireframes")
+![Homepage Wireframe](./readme_images/wireframe_homepage.png "An initial design of the Homepage in Balsamiq Wireframes")
 
 ### Creating an Entity Relationship Diagram
 When designing a database structure, the focal point of the database for any E-Commerce site is always going to be the Product itself. This database is no different, with the Products table being a cornerstone of the project. Wishlist and Basket both behave very similarly - a user can add an item to their Wishlist and their Basket, which actually creates a row in the table of thier user-id and the product-id through a junction-table of wishlist-items and basket-items, which can be filtered by user-id. 
@@ -312,7 +312,7 @@ You may wish to clone this repo to work on it yourself
   `git clone https://github.com/mikesealey/ci_pp4.git`
 - `cd` into the folder, and then run `npm i` to install all dependancies
 
-  ![Cloning this project on Github]( ./readme_images/Screenshot%202025-08-09%20at%2022.39.02.png)
+  ![Cloning this project on Github]( ./readme_images/cloning.png)
 
 ## Forking This Repo
 You may also wish to fork this repo to develop it further for your own needs
@@ -321,7 +321,7 @@ You may also wish to fork this repo to develop it further for your own needs
 - Choose the github account or organisation where you want to fork the repository
 - Github will now create a copy (or _fork_) of the repository in your account.
 
-![Forking this project on Github](./readme_images/Screenshot%202025-08-09%20at%2022.40.50.png)
+![Forking this project on Github](./readme_images/forking.png)
 
 ## Credits
 
@@ -336,16 +336,16 @@ Initially, I had hoped to find more images on sites like pexls, but it proved ha
 
 This meant that I had to use my own, real-life photos of my own, real-life creations, despite being a very inexperienced woodworker, and an even less experienced photographer.
 
-|Product | Source | Image URLs | 
-|--------|--------|-------|
-| Small Pine Vase| Mike Sealey| http://res.cloudinary.com/dvomhvuag/image/upload/v1754077575/jfo4rcxylzwtjn4gwkwx.jpg | |
-|Live Edge Coffee Table| Mike Sealey| http://res.cloudinary.com/dvomhvuag/image/upload/v1753907033/jq0bdlagqwgpytxgsfw7.jpg, http://res.cloudinary.com/dvomhvuag/image/upload/v1753907036/roevnwpt6vnhsfxx9e6p.jpg, http://res.cloudinary.com/dvomhvuag/image/upload/v1753907038/lxjp0hxxkzfuixpmgwz2.jpg, http://res.cloudinary.com/dvomhvuag/image/upload/v1753907040/anhd29bojr6kpoyv3tmw.jpg, http://res.cloudinary.com/dvomhvuag/image/upload/v1753907043/qrsl46nhvp4jeaz8sohe.jpg, http://res.cloudinary.com/dvomhvuag/image/upload/v1753907046/l66ufnbgj50cgyk06man.jpg, http://res.cloudinary.com/dvomhvuag/image/upload/v1753907048/jovs97qcboexlpmkqjfa.jpg  |
-|Large Wooden Vase | ChatGPT | http://res.cloudinary.com/dvomhvuag/image/upload/v1754077417/zanplloxfvt2zjqihezj.png http://res.cloudinary.com/dvomhvuag/image/upload/v1754077415/tsffoquw42r3ccwca41b.png http://res.cloudinary.com/dvomhvuag/image/upload/v1754077418/prdmphsxyfrrfgywgscl.png|
-|White Oak Pestle & Mortar| Mike Sealey | http://res.cloudinary.com/dvomhvuag/image/upload/v1754077789/s7zk3duny5j0of2qme4e.jpg http://res.cloudinary.com/dvomhvuag/image/upload/v1754077791/qxfces1y78h5fgwg7fbf.jpg http://res.cloudinary.com/dvomhvuag/image/upload/v1754077792/zka8vxxpzqnhimoivv4r.jpg http://res.cloudinary.com/dvomhvuag/image/upload/v1754077794/hd2nnn8q6xhwrfmnk0ey.jpg http://res.cloudinary.com/dvomhvuag/image/upload/v1754077796/advtm4blwthl3sia2lf6.jpg |
-|Live edge Incense Burner | Mike Sealey | http://res.cloudinary.com/dvomhvuag/image/upload/v1754078129/lopmmwxxy08hpe7eb93e.jpg http://res.cloudinary.com/dvomhvuag/image/upload/v1754078127/udtkleu6jg8k8lkixmxx.jpg http://res.cloudinary.com/dvomhvuag/image/upload/v1754078131/ee04p3u4venrm4vnrwzg.jpg |
-|6" Bowl | Mike Sealey | http://res.cloudinary.com/dvomhvuag/image/upload/v1753908669/p5zkaamkyaib8wht2ioi.jpg http://res.cloudinary.com/dvomhvuag/image/upload/v1753908672/b4ubtdsufsdt9axyqztn.jpg http://res.cloudinary.com/dvomhvuag/image/upload/v1753908674/bde0rng9llngfy2rft5f.jpg |
-|Openback Oak Dining Chair| ChatGPT | http://res.cloudinary.com/dvomhvuag/image/upload/v1754080088/dph34btg67ktcuwzkuis.png |
-|Spindleback Pine Chair | ChatGPT| http://res.cloudinary.com/dvomhvuag/image/upload/v1754079825/hzdzvaeceru8ghv28djw.png |
+|Product | Image(s) Source | 
+|--------|--------|
+| Small Pine Vase| Mike Sealey| 
+|Live Edge Coffee Table| Mike Sealey| 
+|Large Wooden Vase | ChatGPT |
+|White Oak Pestle & Mortar| Mike Sealey |
+|Live edge Incense Burner | Mike Sealey | 
+|6" Bowl | Mike Sealey | 
+|Openback Oak Dining Chair| ChatGPT | 
+|Spindleback Pine Chair | ChatGPT|s
 
 
 ## Future Developments
