@@ -91,7 +91,7 @@ When designing a database structure, the focal point of the database for any E-C
 
 One addition to the diagram that has been implemented is the timestamp added to the basket to recover items (and stock levels) from any abandonned baskets. When a customer adds an item to their basket, the stock level is decreased, but using the timestamp we can determine when a basket has been abandonned and move the items to the wishlist instead, freeing up the stock.
 
-ERD can be found here: ![The Woodshed ERD](./the_woodshed_er_diagram.pdf)
+ERD can be found here: [Download The Woodshed entity relationship diagram PDF](./the_woodshed_er_diagram.pdf "Download The Woodshed ERD pdf")
 
 ## Code Sources
 - Django management commands tutorial here: https://www.geeksforgeeks.org/python/custom-django-management-commands/ (Used for scheduling expir)
