@@ -14,15 +14,14 @@ from django.core.mail import send_mail
 import os
 from django.utils import timezone
 from django.views.decorators.http import require_POST
-from django.middleware.csrf import get_token
-
+from django.utils.timezone import now
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
-shipping_handling = 12 # Shipping and Handling cost
-free_shipping_at = 500 # cost at which shipping becomes free
+shipping_handling = 12  # Shipping and Handling cost
+free_shipping_at = 500  # cost at which shipping becomes free
 
-# Create your views here.
+
 @login_required
 def add_to_basket(request, product_id):
     product = get_object_or_404(Product, id=product_id)
@@ -43,7 +42,8 @@ def add_to_basket(request, product_id):
         if new_qty > product.qty_in_stock:
             messages.error(
                 request,
-                f"Cannot add another {product.name} — only {product.qty_in_stock} in stock."
+                f"Cannot add another {product.name} — only "
+                f"{product.qty_in_stock} in stock."
             )
         else:
             item.qty = new_qty
@@ -67,6 +67,7 @@ def add_to_basket(request, product_id):
 
     return redirect(request.META.get("HTTP_REFERER", "products_list"))
 
+
 @login_required
 def my_basket(request):
     basket = getattr(request.user, "basket", None)
@@ -87,9 +88,10 @@ def my_basket(request):
             "shipping_handling": shipping_handling,
             "free_shipping_at": free_shipping_at,
             "difference_to_free_shipping": difference_to_free_shipping,
-            "order_total": order_total 
+            "order_total": order_total
         }
     )
+
 
 @login_required
 def remove_from_basket(request, product_id):
@@ -109,9 +111,13 @@ def remove_from_basket(request, product_id):
     messages.success(request, message)
     return redirect(request.META.get("HTTP_REFERER", "my_basket"))
 
+
 @login_required
 def checkout(request):
-    basket = get_object_or_404(Basket.objects.prefetch_related("items__product"), user=request.user)
+    basket = get_object_or_404(
+        Basket.objects.prefetch_related("items__product"),
+        user=request.user
+        )
     items = basket.items.all()
     basket_total = sum(item.product.price * item.qty for item in items)
 
@@ -123,6 +129,7 @@ def checkout(request):
         "stripe_public_key": settings.STRIPE_PUBLIC_KEY,
         "saved_addresses": saved_addresses
     })
+
 
 @csrf_exempt
 @login_required
@@ -137,8 +144,14 @@ def create_payment_intent(request):
         # Save the address info to the session so /basket/success can use it
         request.session["checkout_address"] = shipping
 
-        basket = get_object_or_404(Basket.objects.prefetch_related("items__product"), user=request.user)
-        basket_total = sum(item.product.price * item.qty for item in basket.items.all())
+        basket = get_object_or_404(
+            Basket.objects.prefetch_related("items__product"),
+            user=request.user
+            )
+        basket_total = sum(
+            item.product.price * item.qty
+            for item in basket.items.all()
+            )
         amount = int(basket_total * 100)  # in pence
 
         intent = stripe.PaymentIntent.create(
@@ -149,6 +162,7 @@ def create_payment_intent(request):
         return JsonResponse({"client_secret": intent.client_secret})
     except Exception as e:
         return JsonResponse({"error": str(e)}, status=400)
+
 
 @login_required
 def payment_success(request):
@@ -189,9 +203,11 @@ def payment_success(request):
 
         message_body_lines += [
             "",
-            f"Shipping to: {address.name}, {address.address1}, {address.town_city}, {address.postcode}",
+            f"Shipping to: {address.name}, {address.address1}, "
+            f"{address.town_city}, {address.postcode}",
             "",
-            f"Order placed on: {now().strftime('%d %B %Y at %H:%M')}",
+            f"Order placed on: "
+            f"{now().strftime('%d %B %Y at %H:%M')}",
             "",
             "We'll be in touch when your order ships.",
             "",
@@ -215,14 +231,11 @@ def payment_success(request):
     return render(request, "basket/success.html")
 
 
-
-    messages.success(request, "Succcess! Your order has been placed")
-    return render(request, "basket/success.html")
-
 def payment_error(request):
     message = "An error has occcured. Your card as not been charged"
     messages.error(request, message)
     return render(request, "basket/error.html")
+
 
 @login_required
 @require_POST
@@ -241,7 +254,10 @@ def update_basket_item_qty(request):
     items = basket.items.select_related("product")
 
     basket_total = sum(i.product.price * i.qty for i in items)
-    order_total = basket_total if basket_total >= free_shipping_at else basket_total + shipping_handling
+    order_total = (
+        basket_total if basket_total >= free_shipping_at
+        else basket_total + shipping_handling
+    )
 
     return JsonResponse({
         "status": "ok",
