@@ -51,6 +51,9 @@ For this project I have made use of a simple Kanban Board, which is now availabl
     - I want To easily register for an account So that I can save account/address details or past orders
     - I want recive an email confirming successful sign-up So that I know other email confirmations wont go directly to junk.
 
+## Features
+
+
 ## Design Considerations
 
 Early on in the development of The Woodshed, I knew that I would like to make reusable components as much as possible. The Product Card shown in the wireframe is itself an HTML template. 
@@ -83,6 +86,13 @@ I used Balsamiq Wireframes to mock up a plan for how I would like The Woodshed t
 
 ![Homepage Wireframe](./readme_images/Screenshot%202025-08-09%20at%2015.54.09.png "An initial design of the Homepage in Balsamiq Wireframes")
 
+### Creating an Entity Relationship Diagram
+When designing a database structure, the focal point of the database for any E-Commerce site is always going to be the Product itself. This database is no different, with the Products table being a cornerstone of the project. Wishlist and Basket both behave very similarly - a user can add an item to their Wishlist and their Basket, which actually creates a row in the table of thier user-id and the product-id through a junction-table of wishlist-items and basket-items, which can be filtered by user-id. 
+
+One addition to the diagram that has been implemented is the timestamp added to the basket to recover items (and stock levels) from any abandonned baskets. When a customer adds an item to their basket, the stock level is decreased, but using the timestamp we can determine when a basket has been abandonned and move the items to the wishlist instead, freeing up the stock.
+
+ERD can be found here: ![The Woodshed ERD](./the_woodshed_er_diagram.pdf)
+
 ## Code Sources
 - Django management commands tutorial here: https://www.geeksforgeeks.org/python/custom-django-management-commands/ (Used for scheduling expir)
 
@@ -101,10 +111,6 @@ Which returned:
 > This handcrafted live-edge coffee table is a striking fusion of natural beauty and artisan craftsmanship. Created from a cross section of a sycamore trunk, it captures a rare moment in the tree’s growth—where the trunk naturally bifurcates into two sweeping branches. This unique point of division gives the tabletop a sculptural, organic silhouette, with flowing contours and grain patterns that ripple outward like the rings of time itself. The surface has been carefully planed to reveal the sycamore’s warm, pale hues, delicately accented by darker striations and intricate figuring that make every inch of the wood uniquely expressive. Retaining its natural live edge, the table preserves the raw elegance of the tree while offering a smooth, refined surface for everyday use. The craftsmanship honors the inherent character of the material rather than masking it, allowing nature’s artistry to take center stage. With its uncommon shape and rich texture, this coffee table becomes more than just a piece of furniture—it’s a conversation piece, a functional sculpture that carries the story of the tree it came from. Perfect for modern, rustic, or eclectic interiors, it adds warmth and authenticity to any living space, blending the timeless appeal of natural wood with a bold, contemporary design.
 
 See the conversation here: https://chatgpt.com/share/68966b84-1954-8004-a7bd-d6e05ec7c20d 
-
-## Features
-
-
 
 ## Lighthouse Reports and Validation
 
