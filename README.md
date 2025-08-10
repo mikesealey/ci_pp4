@@ -142,9 +142,23 @@ In order to validate the HTML of this project I have used [https://validator.w3.
 - Vases - https://ci-pp4-the-woodshed-69e11d9176ff.herokuapp.com/products/products/?category=vase - No errors or warnings to show
 ![Validaiton checks on Vases list](./readme_images/validation_vase.png)
 
-- Bowls - https://ci-pp4-the-woodshed-69e11d9176ff.herokuapp.com/products/products/?category=chair - No errors or warnings to show
-- Bowls - https://ci-pp4-the-woodshed-69e11d9176ff.herokuapp.com/products/products/?category=chair - No errors or warnings to show
+- Registration - https://validator.w3.org/nu/?showsource=yes&doc=https%3A%2F%2Fci-pp4-the-woodshed-69e11d9176ff.herokuapp.com%2Faccounts%2Fsignup%2F - Some false-positives on the baked-in Django AllAuth templates. 
+![Validation Checks on Sign Up](./readme_images/validation_signup.png)
+![Validation issues on Sign Up](./readme_images/validation_signup_clarification.png)
 
+- Log In - https://validator.w3.org/nu/?showsource=yes&doc=https%3A%2F%2Fci-pp4-the-woodshed-69e11d9176ff.herokuapp.com%2Faccounts%2Flogin%2F - No errors or warnings to show
+![Validation Checks on Login](./readme_images/validation_login.png)
+
+Unfortunately, this validation tool can't log in for me, so it's not possible to pass a URL for logged-in features. This must be tested by copy-pasting the page-source into the text-input.
+
+- My Profile - No errors or warnings to show
+![Validaiton Checks on My Profile](./readme_images/validation_profile.png)
+
+- My Wishlist - No errors or warnings to show
+![Validation checks on My Wishlist](./readme_images/validation_wishlist.png)
+
+- My Basket - No errors or warnings to show
+![Validation checks on My Basket](./readme_images/validation_basket.png)
 
 
 
