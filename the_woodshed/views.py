@@ -4,6 +4,7 @@ from orders.models import Order
 from django.contrib import messages
 from django.contrib.auth.views import LogoutView
 from basket.views import Address
+from allauth.account.views import ConfirmEmailView
 
 
 def homepage(request):
@@ -33,3 +34,10 @@ def delete_address(request, address_id):
     address.save()
     messages.success(request, "Address deleted.")
     return redirect("my_profile")
+
+
+class ConfirmEmailAutoLoginView(ConfirmEmailView):
+    def get(self, *args, **kwargs):
+        self.object = self.get_object()
+        self.object.confirm(self.request)
+        return redirect('/accounts/login/')

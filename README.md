@@ -187,6 +187,12 @@ Validating stripe.js
 
 Validating toast.js
 ![Validating toast.js](./readme_images/validation_toast.png)
+
+### Python Validation
+A Code Institue reccomended using Flake8 - a VSCode extension for python that helps with code validation and linting. I worked through the project one app at a time to bring all code up to standard and remove unused imports.
+
+![Validating all Python](./readme_images/validation_python.png)
+
 ### Code Documentation
 
 ## Testing
@@ -345,7 +351,7 @@ This meant that I had to use my own, real-life photos of my own, real-life creat
 |Live edge Incense Burner | Mike Sealey | 
 |6" Bowl | Mike Sealey | 
 |Openback Oak Dining Chair| ChatGPT | 
-|Spindleback Pine Chair | ChatGPT|s
+|Spindleback Pine Chair | ChatGPT|
 
 
 ## Future Developments
