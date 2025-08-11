@@ -18,8 +18,8 @@ from django.utils.timezone import now
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
-shipping_handling = 12  # Shipping and Handling cost
-free_shipping_at = 500  # cost at which shipping becomes free
+shipping_handling = settings.SHIPPING_HANDLING
+free_shipping_at = settings.FREE_SHIPPING_AT
 
 
 @login_required

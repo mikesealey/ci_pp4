@@ -189,3 +189,6 @@ DOMAIN_URL = os.environ.get("DOMAIN_URL")
 # Items added to a basket will immediately impart qty_in_stock, abandonned
 # baskets will return the stock levels after this timeout
 BASKET_RESERVATION_HOURS = 3
+
+SHIPPING_HANDLING = 12  # Shipping and Handling cost
+FREE_SHIPPING_AT = 500  # cost at which shipping becomes free

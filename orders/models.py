@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from catalogue.models import Product
+from django.conf import settings
 
 
 class Address(models.Model):
@@ -30,6 +31,15 @@ class Order(models.Model):
         )
     address = models.ForeignKey(Address, on_delete=models.PROTECT)
     created_at = models.DateTimeField(auto_now_add=True)
+
+    def subtotal(self):
+        return sum(item.subtotal() for item in self.items.all())
+
+    def total(self):
+        subtotal = self.subtotal()
+        if subtotal < settings.FREE_SHIPPING_AT:
+            return subtotal + settings.SHIPPING_HANDLING
+        return subtotal
 
     def __str__(self):
         return f"Order #{self.pk} by {self.user.username}"

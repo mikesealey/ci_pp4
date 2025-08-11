@@ -6,9 +6,9 @@
   {% if orders %}
   <p>(Click to expand)</p>
     {% for order in orders %}
-    <div>
+    <div class="mt-2">
       <p>
-        <a class="" data-toggle="collapse" href="#collapse-order-{{ order.id }}" role="button" aria-expanded="false" aria-controls="collapse-order-{{ order.id }}">
+        <a data-toggle="collapse" href="#collapse-order-{{ order.id }}" role="button" aria-expanded="false" aria-controls="collapse-order-{{ order.id }}">
           <strong>Order #{{ order.id }}</strong> — placed on {{ order.created_at|date:"jS F Y" }}
         </a>
       </p>
@@ -45,9 +45,11 @@
               </li>
             {% endfor %}
           </ul>
-
           <div class="text-end mt-3">
-            <strong>Total: £{{ order.total }}</strong>
+            <strong>Sub-total: £{{ order.subtotal }}</strong>
+          </div>
+          <div class="text-end mt-3">
+            <strong>Total: £{{ order.total }} (Includes Shipping & Handling)</strong>
           </div>
         </div>
       </div>
