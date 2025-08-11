@@ -1,14 +1,16 @@
 $(document).ready(function(){
     // Django returns 'Python JSON' which uses single-quotes which isn't compatable with JS-JSON
     // Processing Python JSON into legit-JSON
-    const images = JSON.parse($('#image-data').text());
+    const imageArray = $("#image-data").text()
+    const processedImageArray = imageArray.replaceAll("'", '"')
+    const images = JSON.parse(processedImageArray);
 
-    let index = -1;
+    let index = 0;
 
     function updateGallery() {
-    const leftIndex = (index + images.length) % images.length
-    const centreIndex = (index + 1) % images.length
-    const rightIndex = (index + 2) % images.length
+    const leftIndex = ((index - 1) + images.length) % images.length
+    const centreIndex = (index) % images.length
+    const rightIndex = (index + 1) % images.length
 
     $("#left-image").attr("src", images[leftIndex].url)
     $("#centre-image").attr("src", images[centreIndex].url)
