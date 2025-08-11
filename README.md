@@ -53,6 +53,17 @@ For this project I have made use of a simple Kanban Board, which is now availabl
 
 ## Features
 
+The Woodshed welcomes the user in with a cosy, rustic vibe, to match the artisanal nature of the products sold.
+
+Users can search through the entire catalogue of products with the "All Products" option in the navigation bar, or narrow in on a specific product type such as "Chairs".
+
+Users can also search for specific teams in the search field at the top of the page, which will seach against the product name, the product material, and the product's finish. For example, searching "Live Edge" will show a Live Edge Coffee Table, and a Live Edge Incense Burner. Searching "Oak" will return 4 products made from oak, but this can be refined further by selecting to search the Trinkets category with the term "Oak".
+
+Users can see a brief overview of the product in the Product Card, or click it's title to navigate to the Product Details see more details such as quantity in stock, material, finish, and a description of the item. In both the Product Card and the Product Details, the user will be prevented from adding the item to their basket if it is out of stock. 
+
+When a user adds an item to their basket, the stock is decremented accordingly, preventing two users from both adding the last remaining item to their basket and engaging in a race-to-checkout. However, this could lead to products being tied up and sales being missed if a user abandons items in their basket. To combat this, items left in a basket without checking out will be bumped back into the user's wishlist after a set time, and the stock level is replenished.
+
+
 
 ## Design Considerations
 
