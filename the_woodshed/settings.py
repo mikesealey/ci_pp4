@@ -16,6 +16,7 @@ import dj_database_url
 if os.path.isfile("env.py"):
     import env
 load_dotenv()
+import cloudinary
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -192,3 +193,5 @@ BASKET_RESERVATION_HOURS = 3
 
 SHIPPING_HANDLING = 12  # Shipping and Handling cost
 FREE_SHIPPING_AT = 500  # cost at which shipping becomes free
+
+cloudinary.config(secure=True)

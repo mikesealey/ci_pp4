@@ -136,6 +136,21 @@ See the conversation here: https://chatgpt.com/share/68966b84-1954-8004-a7bd-d6e
 
 ### Performance
 
+Using Chrome Developer tools, I have tested the main flows of my project, with Homepage and Profile performing well.
+
+![Lighthouse results on Hompeage](./readme_images/lighthouse_homepage.png)
+
+![Lighthouse results on Profile](./readme_images/lighthouse_profile.png)
+
+Though with multiple images to load on the Products list, and each bringing with it cookies from Cloudinary where the images are stored, I get flagged up for this in "Best Practices". Perhaps in the future I could look at building my own cloud hosting service, but for now that might be beyond the scope of this project.
+
+![Lighthouse results on Products Lists](./readme_images/lighthouse_products.png)
+
+Just to compare to another e-commerce site:
+
+![Lighthouse results on comparable ecommerce site](./readme_images/lighthouse_amazon.png)
+
+
 ### Accessibility
 
 For testing accessability I'm using Web Accessibility Evaluation Tool. This catches 2 cases of "Low Contrast", though on closer inspection the contrast is checked before the page has properly loaded. 
