@@ -76,13 +76,13 @@ My Profile also includes the Privacy Policy, which exists as a markdown .md file
 
 Early on in the development of The Woodshed, I knew that I would like to make reusable components as much as possible. The Product Card shown in the wireframe is itself an HTML template. 
 
-![Reusable Components - The Product Card](./readme_images/   "Showing the reusable Product Card component")
+![Reusable Components - The Product Card](./readme_images/product_card.png   "Showing the reusable Product Card component")
 
 This means that when passing an array of products, I can simply loop over them and pass in a _this-product_ to a Product Card as follows
 ```Django
 {% for product in products %}
     <div class="col-12 col-sm-6 col-lg-4 px-5 pb-4">
-        {% include "components/product_card.html" with product=product in_wishlist=False %}
+        {% include "components/product_card.html" with product=product %}
     </div>
 {% endfor %}
 ```
