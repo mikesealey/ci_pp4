@@ -15,7 +15,8 @@
         </div>
         <div>
           <form action="{% url 'product_search' %}" method="get" id="top-row-search" class="d-flex flex-grow-1 px-5 align-items-center justify-content-center">
-            <select name="category" class="flex-grow-4">
+            <label for="category" class="sr-only">Search products by category</label>
+            <select name="category" id="category" class="flex-grow-4">
               <option value="">All Categories</option>
               <option value="bowl">Bowls</option>
               <option value="chair">Chairs</option>
@@ -24,7 +25,7 @@
               <option value="vase">Vases</option>
             </select>
             <label for="q" class="sr-only">Search products</label>
-            <input type="search" name="q" class="flex-grow-1">
+            <input type="search" name="q" id="q" class="flex-grow-1">
             <button type="submit">Search</button>
           </form>
         </div>
