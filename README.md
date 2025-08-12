@@ -140,10 +140,17 @@ For testing accessability I'm using Web Accessibility Evaluation Tool. This catc
 
 ![Homepage with acccessibility issues highlighted](./readme_images/wave_homepage.png)
 
-
-
+Side-by-side it is clear that Wave is catching an issue that is resolved when the page loads further. These two issues persist accross all pages, though they are the only two  serious issues.
+![Wishlist and Basket comparison](./readme_images/wave_wishlist_basket.png)
 
 https://wave.webaim.org/report#/https://ci-pp4-the-woodshed-69e11d9176ff.herokuapp.com/ 
+
+Running the tests on a Products List (All Products, Bowls, Chairs, Tables, Trinkets, Vases, Wishlist, Basket), there are the same two issues in the navigation, and a couple of alerts on heading level and 'reduntant alternative text' for users with screen readers. In this case, I feel like it's okay for that to be present and redundant, as the title itself is descriptive enough.
+
+![Redundant Alt Text](./readme_images/wave_products_list.png)
+
+WAVE seems to have an issue with the alt-text provided for each image, but it's not a serious issue.
+![WAVE alt text](./readme_images/wave_gallery_alt_text.png)
 
 
 ### HTML Validation
