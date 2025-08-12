@@ -21,7 +21,7 @@
     {% if products.exists %}
       {% for product in products %}
         <div class="col-12 col-sm-6 col-lg-4 px-5 pb-4">
-          {% include "components/product_card.html" with product=product in_wishlist=False %}
+          {% include "components/product_card.html" with product=product %}
         </div>
       {% endfor %}
     {% else %}
