@@ -170,12 +170,15 @@ In order to validate the HTML of this project I have used [https://validator.w3.
 Unfortunately, this validation tool can't log in for me, so it's not possible to pass a URL for logged-in features. This must be tested by copy-pasting the page-source into the text-input.
 
 - My Profile - No errors or warnings to show
+
 ![Validaiton Checks on My Profile](./readme_images/validation_profile.png)
 
 - My Wishlist - No errors or warnings to show
+
 ![Validation checks on My Wishlist](./readme_images/validation_wishlist.png)
 
 - My Basket - No errors or warnings to show
+
 ![Validation checks on My Basket](./readme_images/validation_basket.png)
 
 ### JavaScript Validation
@@ -183,27 +186,35 @@ Unfortunately, this validation tool can't log in for me, so it's not possible to
 I fed all JavaScript in this project into https://jshint.com/ to confirm that it is valid and clean JS. It mostly complained about missing (uneccesary) semicolons, but occasionally got tripped up by jQuery.
 
 Validating addresses.js
+
 ![Validating addresses.js](./readme_images/validation_addressess.png)
 
 Validating basket.js
+
 ![Validating basket.js](./readme_images/validation_basketjs.png)
 
 Validating filters.js
+
 ![Validating filters.js](./readme_images/validation_filters.png)
 
 Validating gallery.js
+
 ![Validating gallery.js](./readme_images/validation_gallery.png)
 
 Validating navigation.js
+
 ![Validating navigation.js](./readme_images/validation_navigation.png)
 
 Validating privacy_policy.js
+
 ![Validating privacy_policy.js](./readme_images/validation_privacy_policy.png)
 
 Validating stripe.js
+
 ![Validating stripe.js](./readme_images/validation_stripe.png)
 
 Validating toast.js
+
 ![Validating toast.js](./readme_images/validation_toast.png)
 
 ### Python Validation
