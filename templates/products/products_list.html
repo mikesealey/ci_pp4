@@ -1,7 +1,21 @@
 {% extends "base.html" %}
 {% block content %}
   <!-- Sorting/Fitlering -->
-  <div class="translucent-bg mt-2">
+  <div class="translucent-bg mt-2 d-flex flex-row border align-items-center justify-content-around">
+    <div >
+      {% if not request.GET.category and not request.GET.q %}
+        <h1>All Products</h1>
+      {% else %}
+        <h1>
+          {% if request.GET.category %}
+            {{ request.GET.category|capfirst }}{% if request.GET.q %} {% endif %}
+          {% endif %}
+          {% if request.GET.q %}
+            {{ request.GET.q|capfirst }}
+          {% endif %}
+        </h1>
+      {% endif %}
+    </div>
     <form method="get" class="m-2 d-flex justify-content-end align-items-center">
       <label class="m-2 d-flex justify-content-center align-items-center" for="hide_out_of_stock">Hide out of stock</label>
       <input class="m-2 d-flex justify-content-center align-items-center" type="checkbox" id="hide_out_of_stock" name="hide_out_of_stock" value="1" {% if request.GET.hide_out_of_stock == "1" %}checked{% endif %}>
