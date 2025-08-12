@@ -63,13 +63,20 @@ Users can see a brief overview of the product in the Product Card, or click it's
 
 When a user adds an item to their basket, the stock is decremented accordingly, preventing two users from both adding the last remaining item to their basket and engaging in a race-to-checkout. However, this could lead to products being tied up and sales being missed if a user abandons items in their basket. To combat this, items left in a basket without checking out will be bumped back into the user's wishlist after a set time, and the stock level is replenished.
 
+At the basket, the user will be able to see how much their basket total is, and if they meet the threshold to recieve free shipping (and prompted to add more items to qualify for free shipping). If a user realises they are close to the threshold, they may head back into the Products List to find a small item to increase the basket total, which will increase sales.
+
+At the checkout, users can select from addresses saved against their profile, speeding up the checkout process. They can also copy the billing address to the shipping address with a single button, which will help make the process quicker and easier for the customer. When completing the purchase, a confirmation email is sent to the user.
+
+The user can also see their past orders in My Profile, which gives a black & white, document/invoice style order summary including the subtotal (ex shipping) and total. My Profile will also let the user manage their saved addresses. Saved addresses can be used in the Checkout to speed up transactions.
+
+My Profile also includes the Privacy Policy, which exists as a markdown .md file in the project repository. Should the owner or management of The Woodshed ever need to change or update this, they simply need to update or replace the privacy_policy.md file - this is then read with jQuery and the Marked library to convert to HTML elements and display on the page. The user can also download the file for safe keeping or closer inspection. https://marked.js.org/
 
 
 ## Design Considerations
 
 Early on in the development of The Woodshed, I knew that I would like to make reusable components as much as possible. The Product Card shown in the wireframe is itself an HTML template. 
 
-![Reusable Components - The Product Card](./readme_images/  "Showing the reusable Product Card component")
+![Reusable Components - The Product Card](./readme_images/   "Showing the reusable Product Card component")
 
 This means that when passing an array of products, I can simply loop over them and pass in a _this-product_ to a Product Card as follows
 ```Django
@@ -306,19 +313,36 @@ Status - Pass
 
 Status - Pass
 
-### Additional Testing
-
-
 ### Functional Testing
+#### Abandonned baskets replenish stock quantity, and move items to wishlist
+Steps:
+1. As a logged-in user, add items to the basket (notice their stock levels)
+2. Do not check out. Return 3 hours and 10 minutes later (3 hour timeout, plus job runs every 10 minutes)
+3. Item will have been bumped to wishlist, stock level will have been replenished.
+
+Status - pass
+
+#### Testing Payments
+Stripe provides sample/dummy card numbers for testing. Using the provided card numbers, along with any future date for expiry, and any 3-digits for CVC will yield the specified result as a happy-path. https://docs.stripe.com/testing - a pass-status is awarded when the expected progression (successful payment) or error message 
+
+| Type | Card Number| Displays error to user | Status |
+|------|------------|--------|--------|
+| Happy Path - Proceed | 4242424242424242 | Proceed to /basket/success. | Pass |
+| Generic Decline | 4000000000000002 | Your card has been declined. | Pass |
+| Insufficient funds decline | 4000000000009995 | Your card has been declined. | Pass |
+| Expired card decline | 4000000000000069 | Your card has expired. Try a different card. | Pass |
+| Processing error decline | 4000000000000119 | An error occurred while processing your card. Try again. | Pass |
+
 
 ### Unit Tests in Django
 
+
 ### Browser Compatibility
+Through warning thrown during Code Validation it is clear that this project is unlikely to be fully compatable with any pre-ES6 browsers. 
 
 ## Deployment
 
 ## Cloning This Repo
-## Cloning this repo
 
 You may wish to clone this repo to work on it yourself
 
@@ -368,7 +392,7 @@ This meant that I had to use my own, real-life photos of my own, real-life creat
 ## Future Developments
 
 ### Back office or Admin Panels
-    
+In the future it would be very useful to build some back-office spaces like admin panels that could collate information on sales-over-time, or apply discounts or special-offers on products. It would also be useful to make any changes or updates to the Privacy Policy - some of this work has been done already with the way the Privacy Policy is stored and fetched, simply uploading a new file
     
 
 
