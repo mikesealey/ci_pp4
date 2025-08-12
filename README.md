@@ -136,6 +136,16 @@ See the conversation here: https://chatgpt.com/share/68966b84-1954-8004-a7bd-d6e
 
 ### Accessibility
 
+For testing accessability I'm using Web Accessibility Evaluation Tool. This catches 2 cases of "Low Contrast", though on closer inspection the contrast is checked before the page has properly loaded. 
+
+![Homepage with acccessibility issues highlighted](./readme_images/wave_homepage.png)
+
+
+
+
+https://wave.webaim.org/report#/https://ci-pp4-the-woodshed-69e11d9176ff.herokuapp.com/ 
+
+
 ### HTML Validation
 In order to validate the HTML of this project I have used [https://validator.w3.org/nu](https://validator.w3.org/nu). When validating, I have fed the URL of the deployed app. I had previously tried to validate individual files, but this causes errors when HTML components such as the Product Card does not have Head or Body tags, because it is only meant to be used as part of a larger page. Taking this approach actually makes validating the HTML easier, as I can validate multiple components at once.
 

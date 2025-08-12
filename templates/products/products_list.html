@@ -5,6 +5,7 @@
     <form method="get" class="m-2 d-flex justify-content-end align-items-center">
       <label class="m-2 d-flex justify-content-center align-items-center" for="hide_out_of_stock">Hide out of stock</label>
       <input class="m-2 d-flex justify-content-center align-items-center" type="checkbox" id="hide_out_of_stock" name="hide_out_of_stock" value="1" {% if request.GET.hide_out_of_stock == "1" %}checked{% endif %}>
+      <label for="sorting" class="sr-only">Sort products</label>
       <select id="sorting" name="sort">
         <option value="">Sort by</option>
         <option value="price_low_high" {% if request.GET.sort == "price_low_high" %}selected{% endif %}>
