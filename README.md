@@ -38,6 +38,8 @@ This project is for educational purposes only. Do not attempt to place an order 
 ## User Stories
 For this project I have made use of a simple Kanban Board, which is now available as a feature of Github Projects - You can see it here: https://github.com/users/mikesealey/projects/3 
 
+I also implemented a project board for other taks not specifically related to user stories, but helpful for a to-do list to help keep myself focussed on the task. https://github.com/users/mikesealey/projects/4 
+
 ### As a user
     - I want to easily log in/out So that to keep my details and orders safe at minimal inconvenience.
     - I want view more specific details about a product So that I can make an informed decision about price, material, finish, etc
@@ -239,8 +241,6 @@ A Code Institue reccomended using Flake8 - a VSCode extension for python that he
 
 ![Validating all Python](./readme_images/validation_python.png)
 
-### Code Documentation
-
 ## Testing
 
 ### Testing User Stories
@@ -363,16 +363,19 @@ Stripe provides sample/dummy card numbers for testing. Using the provided card n
 
 
 ### Unit Tests in Django
+I've written some basic unit tests in Django for both Wishlist and Basket. The structure of them is such that the tests are effectively the same across both models. In each case, the test runs to check if the user is logged in (only logged in users can have wishlists or baskets), adds a product to the wishlist/basket, adds multiple producst to the wishlist/basket, and then removes a product from the wishlist/basket.
+
+These tests can be run locally with `python3 manage.py test --verbosity=3`
 
 
 ### Browser Compatibility
-Through warning thrown during Code Validation it is clear that this project is unlikely to be fully compatable with any pre-ES6 browsers. 
+Through warning thrown during Code Validation it is clear that this project is unlikely to be fully compatable with any pre-ES6 browsers, though as ES6 was introduced a decade ago, I'm happy for this to be where the line is drawn. I've tested thoroughly on Chrome, Firefox, and Safari. The only issue I encountered was a simple styling fix, pushed in commit `64e976a0a1cb24d75bb82b6cebd458156b93b0f6` caused by slightly different handling of HTML elements causing a styling misalignment.
 
 ## Deployment
 
-## Cloning This Repo
+### Cloning This Repo
 
-You may wish to clone this repo to work on it yourself
+You may wish to clone this repo to work on it yourself.
 
 - At the top of the page above the file-list, click the "Code" button
 - Copy the URL `https://github.com/mikesealey/ci_pp4.git`
@@ -383,7 +386,7 @@ You may wish to clone this repo to work on it yourself
 
   ![Cloning this project on Github]( ./readme_images/cloning.png)
 
-## Forking This Repo
+### Forking This Repo
 You may also wish to fork this repo to develop it further for your own needs
 
 - In the top bar, click "Fork"
@@ -421,6 +424,8 @@ This meant that I had to use my own, real-life photos of my own, real-life creat
 
 ### Back office or Admin Panels
 In the future it would be very useful to build some back-office spaces like admin panels that could collate information on sales-over-time, or apply discounts or special-offers on products. It would also be useful to make any changes or updates to the Privacy Policy - some of this work has been done already with the way the Privacy Policy is stored and fetched, simply uploading a new file
+
+
     
 
 
